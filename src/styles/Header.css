@@ -1,0 +1,14 @@
+.contenedor-header{
+    background-color: #0a753a;
+    color: white;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100px;
+    font-family: Inter;
+}
+
+.header{
+    
+}
