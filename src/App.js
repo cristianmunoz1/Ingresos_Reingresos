@@ -1,16 +1,19 @@
 import './App.css';
-import Boton from './components/Boton';
-import Header from './components/Header';
+import './styles/Header.css'
+import { Routes, Route } from "react-router-dom";
+import PaginaPrincipal from './pages/PaginaPrincipal';
+import RegistroIngreso from './pages/RegistroIngreso';
+import Form  from './pages/Form.js';
 
 function App() {
   return (
-    <div className="App">
-      <Header text="Página para ingresos UdeA"/>
-      <div className='contenedor-botones'>
-        <Boton text="Estudiantes/Aspirantes"/>
-        <Boton text="Admisiones"/>
-      </div>
-      
+    <div>  
+
+        <Routes>
+         <Route path='/' element={<PaginaPrincipal />}/>
+         <Route path='/registro' element={<RegistroIngreso />}/>
+         <Route path='/registro/formulario' element={<Form />}/>
+        </Routes>
     </div>
   );
 }

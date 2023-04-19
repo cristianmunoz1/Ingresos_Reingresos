@@ -21,3 +21,29 @@
   justify-content: center;
   font-family: Inter;
 }
+
+.contenedor-texto{
+  display: flex;
+  color: gray;
+  width: 500px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-family: Inter;
+}
+
+.contenedor-botones-footer{
+  display: flex;
+  flex-direction: row;
+  margin-top: 110px;
+  justify-content: space-between;
+}
+
+.contenedor-botones-footer .boton{
+  display: flex;
+  width: 290px;
+  height: 19px; 
+  font-size: 17px;
+  align-items: center;
+  justify-content: center;
+}
