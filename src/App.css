@@ -47,3 +47,27 @@
   align-items: center;
   justify-content: center;
 }
+
+h1{
+  text-align: center;
+  margin: 25px;
+}
+
+.fila{
+  display: flex;
+  margin: 30px;
+  justify-content: space-between;
+}
+
+hr{
+  opacity: 20%;
+}
+
+.ingreso-especial{
+  display: flex;
+  flex-direction: column;
+}
+
+.ingreso-especial input{
+  margin: 20px;
+}
