@@ -2,8 +2,11 @@ import '../App.css';
 import Boton from '../components/Boton';
 import { Link } from 'react-router-dom';
 import Header from '../components/Header';
+import { departamentos, municipios } from '../utils/data';
+import { useState } from 'react';
 
 function Form() {
+  const [departamento, setDepartamento] = useState('');
   return (
     <div className="Form">
       <Header text="Ingresos UdeA" />
@@ -34,18 +37,32 @@ function Form() {
             <label>
               Lugar de expedición del documento:
               <br />
-              <select required>
-                <option value="Antioquia" disabled selected>Departamento</option>
-                <option value="tarjetaIdentidad">Tarjeta de identidad</option>
-                <option value="pasaporte">Pasaporte</option>
-                <option value="cedulaExtranjeria">Cédula de extranjería</option>
+              <select required value={departamento} onChange={(e) => {
+                setDepartamento(e.target.value);
+                console.log(departamento)
+              }}>
+                <option value="depto" disabled selected>Departamento</option>
+                {
+                  departamentos.map(( departamento ) => {
+                    return (
+                      <option value={departamento}>{departamento}</option>
+                    )
+                  })
+                }
               </select>
               
-              <select required>
+              <select required >
                 <option value="cedulaCiudadania" disabled selected>Municipio</option>
-                <option value="tarjetaIdentidad">Tarjeta de identidad</option>
-                <option value="pasaporte">Pasaporte</option>
-                <option value="cedulaExtranjeria">Cédula de extranjería</option>
+                { departamento == '' ? null : (
+                  municipios[{departamento}].map( (municipio) => {
+
+                    return(
+                      <option value={municipio}>{municipio}</option>
+                    )
+                  })
+                )
+                  
+                }
               </select>
             </label>
           </div>
