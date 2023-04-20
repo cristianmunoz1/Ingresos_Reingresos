@@ -7,11 +7,13 @@ import { useState } from 'react';
 
 function Form() {
 
-  const handleChange =(event) =>{
-    setDepartamento(event.target.value);
-    console.log(departamento);
-  }
-  const [departamento, setDepartamento] = useState('depto');
+  // const handleChange =(event) =>{
+  //   setDepartamento(event.target.value);
+  //   console.log(departamento);
+  // }
+  const [departamentoCedula, setDepartamentoCedula] = useState('depto');
+  const [departamentoNacimiento, setDepartamentoNacimiento] = useState('depto');
+  const [departamentoResidencia, setDepartamentoResidencia] = useState('depto');
   return (
     <div className="Form">
       <Header text="Ingresos UdeA" />
@@ -40,9 +42,10 @@ function Form() {
               <input type='date'></input>
             </label>
             <label>
-              Lugar de residencia:
+              Lugar de expedición de documento:
               <br />
-              <select required value={departamento} onChange={handleChange}>
+              <select required value={departamentoCedula} onChange={(event) => setDepartamentoCedula(event.target.value)}
+                >
                 <option value="depto" disabled selected>Departamento</option>
                 {
                   departamentos.map(( option ) => {
@@ -55,8 +58,8 @@ function Form() {
               
               <select required >
                 <option value="municipio" disabled selected>Municipio</option>
-                { departamento == 'depto' ? null : (
-                  municipios[departamento].map( (municipio) => {
+                { departamentoCedula == 'depto' ? null : (
+                  municipios[departamentoCedula].map( (municipio) => {
 
                     return(
                       <option value={municipio}>{municipio}</option>
@@ -101,36 +104,57 @@ function Form() {
             <label>
               Lugar de nacimiento:
               <br />
-              <select required>
-                <option value="Antioquia" disabled selected>Departamento</option>
-                <option value="tarjetaIdentidad">Tarjeta de identidad</option>
-                <option value="pasaporte">Pasaporte</option>
-                <option value="cedulaExtranjeria">Cédula de extranjería</option>
-              </select>
-              
-              <select required>
-                <option value="cedulaCiudadania" disabled selected>Municipio</option>
-                <option value="tarjetaIdentidad">Tarjeta de identidad</option>
-                <option value="pasaporte">Pasaporte</option>
-                <option value="cedulaExtranjeria">Cédula de extranjería</option>
+              <select required value={departamentoNacimiento} onChange={(event) => setDepartamentoNacimiento(event.target.value)}>
+                <option value="depto" disabled selected>Departamento</option>
+                {
+                  departamentos.map(( option ) => {
+                    return (
+                      <option value={option.value}>{option.label}</option>
+                    )
+                  })
+                }
               </select>
             </label>
+              <select required >
+                <option value="municipio" disabled selected>Municipio</option>
+                { departamentoNacimiento == 'depto' ? null : (
+                  municipios[departamentoNacimiento].map( (municipio) => {
+
+                    return(
+                      <option value={municipio}>{municipio}</option>
+                    )
+                  })
+                )
+                  
+                }
+              </select>
 
             <label>
-              Lugar de expedición del documento:
+              Lugar de residencia:
               <br />
-              <select required>
-                <option value="Antioquia" disabled selected>Departamento</option>
-                <option value="tarjetaIdentidad">Tarjeta de identidad</option>
-                <option value="pasaporte">Pasaporte</option>
-                <option value="cedulaExtranjeria">Cédula de extranjería</option>
+              <select required value={departamentoResidencia} onChange={(event) => setDepartamentoResidencia(event.target.value)}>
+                <option value="depto" disabled selected>Departamento</option>
+                {
+                  departamentos.map(( option ) => {
+                    return (
+                      <option value={option.value}>{option.label}</option>
+                    )
+                  })
+                }
               </select>
               
-              <select required>
-                <option value="cedulaCiudadania" disabled selected>Municipio</option>
-                <option value="tarjetaIdentidad">Tarjeta de identidad</option>
-                <option value="pasaporte">Pasaporte</option>
-                <option value="cedulaExtranjeria">Cédula de extranjería</option>
+              <select required >
+                <option value="municipio" disabled selected>Municipio</option>
+                { departamentoResidencia == 'depto' ? null : (
+                  municipios[departamentoResidencia].map( (municipio) => {
+
+                    return(
+                      <option value={municipio}>{municipio}</option>
+                    )
+                  })
+                )
+                  
+                }
               </select>
             </label>
           </div>
