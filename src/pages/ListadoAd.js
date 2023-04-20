@@ -6,7 +6,7 @@ import Header from '../components/Header';
 function ListadoAd(){
   return(
     <div className='listado-admisiones'>
-
+      
     </div>
   );
 };

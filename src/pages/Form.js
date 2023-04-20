@@ -6,7 +6,12 @@ import { departamentos, municipios } from '../utils/data';
 import { useState } from 'react';
 
 function Form() {
-  const [departamento, setDepartamento] = useState('');
+
+  const handleChange =(event) =>{
+    setDepartamento(event.target.value);
+    console.log(departamento);
+  }
+  const [departamento, setDepartamento] = useState('depto');
   return (
     <div className="Form">
       <Header text="Ingresos UdeA" />
@@ -35,26 +40,23 @@ function Form() {
               <input type='date'></input>
             </label>
             <label>
-              Lugar de expedición del documento:
+              Lugar de residencia:
               <br />
-              <select required value={departamento} onChange={(e) => {
-                setDepartamento(e.target.value);
-                console.log(departamento)
-              }}>
+              <select required value={departamento} onChange={handleChange}>
                 <option value="depto" disabled selected>Departamento</option>
                 {
-                  departamentos.map(( departamento ) => {
+                  departamentos.map(( option ) => {
                     return (
-                      <option value={departamento}>{departamento}</option>
+                      <option value={option.value}>{option.label}</option>
                     )
                   })
                 }
               </select>
               
               <select required >
-                <option value="cedulaCiudadania" disabled selected>Municipio</option>
-                { departamento == '' ? null : (
-                  municipios[{departamento}].map( (municipio) => {
+                <option value="municipio" disabled selected>Municipio</option>
+                { departamento == 'depto' ? null : (
+                  municipios[departamento].map( (municipio) => {
 
                     return(
                       <option value={municipio}>{municipio}</option>

@@ -1,6 +1,10 @@
-let departamentos = ['Antioquia', 'Santander', 'Amazonas'];
+const departamentos = [
+    {label:'Antioquia', value:'antioquia'},
+    {label:'Amazonas', value:'amazonas'},
+    {label:'Santander', value:'santander'},
+];
 let municipios={
-    'Antioquia': [
+    'antioquia': [
         'Medellin',
         'La Ceja',
         'Rionegro',
@@ -8,12 +12,12 @@ let municipios={
         'Santa Rosa',
         'San Andres'
     ],
-    'Santander': [
+    'santander': [
         'Aguada',
         'Villa de Leyva',
         'Aratoca',
     ],
-    'Amazonas': [
+    'amazonas': [
         'Leticia',
         'Tarapaca',
         'Puerto Arica',
