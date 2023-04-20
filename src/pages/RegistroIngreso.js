@@ -16,8 +16,12 @@ function RegistroIngreso() {
         </div>
       </div>
       <div className='contenedor-botones-footer'>
+        <Link to='/'>
         <Boton text="Volver a pantalla principal" />
+        </Link>
+        <Link to='/' >
         <Boton text="Atrás" />
+        </Link>
       </div>
       
     </div>
