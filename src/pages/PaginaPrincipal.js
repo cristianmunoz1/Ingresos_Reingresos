@@ -11,7 +11,9 @@ function PaginaPrincipal() {
         <Link to='registro'>
             <Boton text="Estudiantes/Aspirantes"/>
         </Link>
-        <Boton text="Admisiones"/>
+        <Link to='/admisiones'>
+          <Boton text="Admisiones"/>
+        </Link>
       </div>
     </div>
   );
