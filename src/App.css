@@ -121,3 +121,38 @@ hr{
   margin: 8px;
   padding: 5px;
 }
+
+.formulario{
+  font-family: Inter;
+}
+
+.formulario input, select{
+  border-radius: 10px;
+  border: 0;
+  background-color: #d9d9d9;
+  width: auto;
+  height: 30px;
+  padding: 2px;
+}
+
+.formulario label{
+  font-weight: 700;
+}
+
+.fila {
+  display: flex;
+  flex-direction: row;
+}
+
+.fila1{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.discapacidad{
+  display: flex;
+  flex-direction: column;
+  margin: 0 200px;
+}

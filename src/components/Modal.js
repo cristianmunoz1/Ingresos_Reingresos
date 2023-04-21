@@ -2,6 +2,8 @@ import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
 
 function ModalIngresoPuntaje(props) {
   const [show, setShow] = useState(false);
@@ -21,29 +23,57 @@ function ModalIngresoPuntaje(props) {
         </Modal.Header>
         <Modal.Body>
           <Form>
-            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-              <Form.Label>Email address</Form.Label>
-              <Form.Control
-                type="email"
-                placeholder="name@example.com"
-                autoFocus
-              />
-            </Form.Group>
-            <Form.Group
-              className="mb-3"
-              controlId="exampleForm.ControlTextarea1"
-            >
-              <Form.Label>Example textarea</Form.Label>
-              <Form.Control as="textarea" rows={3} />
-            </Form.Group>
+            <Row>
+              <Col><Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                <Form.Label className='labelIdentificacion'>Identificación:
+
+                </Form.Label>
+                <br />
+                <Form.Text>
+                  {props.text}
+                </Form.Text>
+              </Form.Group></Col>
+              <Col><Form.Group
+                className="mb-3"
+                controlId="exampleForm.ControlTextarea1"
+              >
+                <Form.Label>Nombre</Form.Label>
+                <br />
+                <Form.Text>
+                  {props.name}
+                </Form.Text>
+              </Form.Group></Col>
+            </Row>
+            <Row>
+              <Col><Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                <Form.Label className='labelIdentificacion'>Puntaje:
+
+                </Form.Label>
+                <br />
+                <Form.Text>
+                  (0-100)
+                </Form.Text>
+                <Form.Control type="number" min={0} max={100} />
+              </Form.Group></Col>
+              <Col><Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                <br />
+                <br />
+
+                <Form.Check type="checkbox" label="¿Activo?" />
+              </Form.Group></Col>
+              <Col>
+              </Col>
+            </Row>
+
+
           </Form>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
-            Close
+            Cerrar
           </Button>
           <Button variant="primary" onClick={handleClose}>
-            Save Changes
+            Asignar Puntaje
           </Button>
         </Modal.Footer>
       </Modal>

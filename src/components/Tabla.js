@@ -19,7 +19,7 @@ function Tabla(props){
         </thead>
         <tbody>
             <tr>
-                <td><ModalIngresoPuntaje text='1111111'></ModalIngresoPuntaje></td>
+                <td><ModalIngresoPuntaje text='1111111' name='Pepito Perez'></ModalIngresoPuntaje></td>
                 <td>Pepito Pérez</td>
                 <td>505</td>
                 <td>Medicina</td>
@@ -27,7 +27,7 @@ function Tabla(props){
                 <td>Presencial</td>
             </tr>
             <tr>
-                <td><ModalIngresoPuntaje text='2222222'></ModalIngresoPuntaje></td>
+                <td><ModalIngresoPuntaje text='2222222' name="María Álvarez"></ModalIngresoPuntaje></td>
                 <td>María Álvarez</td>
                 <td>404</td>
                 <td>Ing. de sistemas</td>

@@ -25,7 +25,7 @@ function Form() {
           <hr></hr>
           <div className='fila'>
             <label>
-              Tipo de identificación:
+              * Tipo de identificación:
               <select required>
                 <option value="cedulaCiudadania">Cédula de ciudadanía</option>
                 <option value="tarjetaIdentidad">Tarjeta de identidad</option>
@@ -34,15 +34,15 @@ function Form() {
               </select>
             </label>
             <label>
-              Número de identificación:
-              <input type='number'></input>
+              * Número de identificación:
+              <input type='number' required></input>
             </label>
             <label>
-              Fecha de expedición del documento:
-              <input type='date'></input>
+              * Fecha de expedición del documento:
+              <input type='date' required></input>
             </label>
             <label>
-              Lugar de expedición de documento:
+              * Lugar de expedición de documento:
               <br />
               <select required value={departamentoCedula} onChange={(event) => setDepartamentoCedula(event.target.value)}
                 >
@@ -76,7 +76,7 @@ function Form() {
           <label>
               * Primer nombre:
               <br />
-              <input type='text'></input>
+              <input type='text' required></input>
             </label>
             <label>
               Segundo nombre:
@@ -86,7 +86,7 @@ function Form() {
             <label>
               * Primer apellido:
               <br/>
-              <input type='text'></input>
+              <input type='text' required></input>
             </label>
             <label>
               Segundo apellido:
@@ -97,12 +97,12 @@ function Form() {
           <hr></hr>
           <div className='fila'>
             <label>
-              Fecha de nacimiento:
+              * Fecha de nacimiento:
               <br/>
-              <input type='date'></input>
+              <input type='date' required></input>
             </label>
             <label>
-              Lugar de nacimiento:
+              * Lugar de nacimiento:
               <br />
               <select required value={departamentoNacimiento} onChange={(event) => setDepartamentoNacimiento(event.target.value)}>
                 <option value="depto" disabled selected>Departamento</option>
@@ -114,7 +114,6 @@ function Form() {
                   })
                 }
               </select>
-            </label>
               <select required >
                 <option value="municipio" disabled selected>Municipio</option>
                 { departamentoNacimiento == 'depto' ? null : (
@@ -128,9 +127,11 @@ function Form() {
                   
                 }
               </select>
+            </label>
+              
 
             <label>
-              Lugar de residencia:
+              * Lugar de residencia:
               <br />
               <select required value={departamentoResidencia} onChange={(event) => setDepartamentoResidencia(event.target.value)}>
                 <option value="depto" disabled selected>Departamento</option>
@@ -176,10 +177,10 @@ function Form() {
                 <input type='checkbox'></input>
               </label>
               <label>
-                * Causa de ingreso especial:
+                Causa de ingreso especial:
                 <br />
-              <select required>
-                <option value="Antioquia" disabled selected>Seleccione su género</option>
+              <select>
+                <option value="Antioquia" disabled selected>Seleccione</option>
                 <option value="tarjetaIdentidad">Andrés Bello</option>
                 <option value="pasaporte">Indígenas, negras y raizales</option>
                 <option value="cedulaExtranjeria">Ley 1084 de 2006</option>
@@ -190,17 +191,17 @@ function Form() {
             <label>
               * Email:
               <br />
-              <input type='email'></input>
+              <input type='email' required></input>
             </label>
             <label>
-              Número telefónico:
+              * Número telefónico:
               <br />
-              <input type='number' placeholder='+57'></input>
+              <input type='number' required placeholder='+57'></input>
             </label>
           </div>
           <hr />
-          <div className='fila'>
-            <div className='ingreso-especial'>
+          <div className='fila1'>
+            <div className='discapacidad'>
               <label>
                 ¿Presenta alguna discapacidad?
                 <input type='checkbox'></input>
@@ -208,7 +209,7 @@ function Form() {
               <label>
                 Discapacidad
                 <br />
-              <select required>
+              <select >
                 <option value="Antioquia" disabled selected>Seleccione </option>
                 <option value="tarjetaIdentidad">Fisica</option>
                 <option value="pasaporte">Intelectual</option>
@@ -217,11 +218,14 @@ function Form() {
               </select>
             </label>
             </div>
+            <div className='discapacidad'>
             <label >
-              *Adjuntar acta de bachiller <br/>
-              <input type='file' id='Archivo' />
+              * Adjuntar acta de bachiller <br/>
+              <input type='file' id='Archivo' required/>
 
             </label>
+            </div>
+
           </div>
         </div>
         
@@ -231,7 +235,7 @@ function Form() {
           <div className='fila'>
           <label>Ingreso comun</label>  
           <label>
-              PROGRAMA:
+              * PROGRAMA:
               <select required>
                 <option value="cedulaCiudadania">Cédula de ciudadanía</option>
                 <option value="tarjetaIdentidad">Tarjeta de identidad</option>
