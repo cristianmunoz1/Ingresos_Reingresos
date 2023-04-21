@@ -1,13 +1,12 @@
 import React from "react";
-import '../styles/Header.css';
+import "../styles/Header.css";
 
-function Header(props){
-  return(
+function Header(props) {
+  return (
     <div className="contenedor-header">
-      <h1>{props.text}</h1>   
+      <h1>{props.text}</h1>
     </div>
-        
   );
 }
 
-export default Header
+export default Header;

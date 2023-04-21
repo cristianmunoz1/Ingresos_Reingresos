@@ -1,17 +1,16 @@
-.boton{
-    margin: 30px;
-    padding: 30px;
-    width: 500px;
-    border-radius: 100px;
-    background-color: #0a753a;
-    font-size: 25px;
-    color: white;
-    font-weight: 700;
-    border: #0a753a;
-    transition: 0.3s;
-    font-family: Inter;
+.boton {
+  padding: 30px;
+  width: 500px;
+  border-radius: 100px;
+  background-color: #0a753a;
+  font-size: 25px;
+  color: white;
+  font-weight: 700;
+  border: #0a753a;
+  transition: 0.3s;
+  font-family: Inter;
 }
 
-.boton:hover{
-    transform: scale(105%);
+.boton:hover {
+  transform: scale(105%);
 }

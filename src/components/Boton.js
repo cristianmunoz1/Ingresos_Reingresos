@@ -1,16 +1,12 @@
 import React from "react";
-import '../styles/Boton.css'
+import "../styles/Boton.css";
 
-function Boton(props){
+function Boton(props) {
   return (
     <div className="contenedor-boton">
-
-      <button className="boton">
-        {props.text}
-      </button>
-
+      <button className="boton">{props.text}</button>
     </div>
   );
 }
 
-export default Boton
+export default Boton;

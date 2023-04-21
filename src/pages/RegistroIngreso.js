@@ -1,29 +1,31 @@
-import { Link } from 'react-router-dom';
-import '../App.css';
-import Boton from '../components/Boton';
-import Header from '../components/Header';
+import { Link } from "react-router-dom";
+import "../App.css";
+import Boton from "../components/Boton";
+import Header from "../components/Header";
 
 function RegistroIngreso() {
   return (
     <div className="RegistroIngreso">
-      <Header text="Registro para ingreso UdeA"/>
-      <div className='contenedor-botones'>
-        <Link to='formulario'>
-          <Boton text="Ingreso"/>
+      <Header text="Registro para ingreso UdeA" />
+      <div className="contenedor-botones">
+        <Link to="formulario">
+          <Boton text="Ingreso" />
         </Link>
-        <div className='contenedor-texto'>
-            <p>Solo válido para ingresos por primera vez a la Universidad de Antioquia o proviene de transferencia</p>
+        <div className="contenedor-texto">
+          <p>
+            Solo válido para ingresos por primera vez a la Universidad de
+            Antioquia o proviene de transferencia
+          </p>
         </div>
       </div>
-      <div className='contenedor-botones-footer'>
-        <Link to='/'>
-        <Boton text="Volver a pantalla principal" />
+      <div className="contenedor-botones-footer">
+        <Link to="/">
+          <Boton text="Volver a pantalla principal" />
         </Link>
-        <Link to='/' >
-        <Boton text="Atrás" />
+        <Link to="/">
+          <Boton text="Atrás" />
         </Link>
       </div>
-      
     </div>
   );
 }

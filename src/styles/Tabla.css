@@ -4,6 +4,10 @@ table{
     font-family: Inter;
     border-collapse: collapse;
     background-color: #d9d9d9;
+    border-radius: 30px;
+    border-collapse: collapse;
+    border-style: hidden; 
+    
 }
 
 table th, 

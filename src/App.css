@@ -1,10 +1,10 @@
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-.App{
+.App {
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
@@ -12,7 +12,7 @@
   justify-content: center;
 }
 
-.contenedor-botones{
+.contenedor-botones {
   margin-top: 5%;
   display: flex;
   flex-wrap: wrap;
@@ -20,9 +20,11 @@
   align-items: center;
   justify-content: center;
   font-family: Inter;
+  gap: 30px;
+  padding: 0px 30px;
 }
 
-.contenedor-texto{
+.contenedor-texto {
   display: flex;
   color: gray;
   width: 500px;
@@ -32,67 +34,75 @@
   font-family: Inter;
 }
 
-.contenedor-botones-footer{
+.contenedor-botones-footer {
   display: flex;
   flex-direction: row;
   margin-top: 110px;
   justify-content: space-between;
+  padding: 30px;
 }
 
-.contenedor-botones-footer .boton{
+.contenedor-botones-footer .boton {
   display: flex;
   width: 290px;
-  height: 19px; 
+  height: 19px;
   font-size: 17px;
   align-items: center;
   justify-content: center;
 }
 
-h1{
+h1 {
   text-align: center;
   margin: 25px;
 }
 
-.fila{
+.fila {
+  display: flex;
+  margin: 30px;
+  justify-content: space-between;
+}
+.fila-tipoingreso {
   display: flex;
   margin: 30px;
   justify-content: space-between;
 }
 
-hr{
+.fila-tipoingreso label{
+  display: flex;
+  flex-direction: column;
+}
+
+hr {
   opacity: 20%;
 }
 
-.ingreso-especial{
+.ingreso-especial {
   display: flex;
   flex-direction: column;
 }
 
-.ingreso-especial input{
-  margin: 20px;
-}
-
-.contenedor-tabla{
+.contenedor-tabla {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.listado-admisiones{
+.listado-admisiones {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-.contenedor-botones-listado{
+.contenedor-botones-listado {
   display: flex;
   justify-content: flex-start;
   align-items: center;
   width: 100%;
+  padding: 30px;
 }
 
-.contenedor-botones-listado a .contenedor-boton .boton{
+.contenedor-botones-listado a .contenedor-boton .boton {
   width: 190px;
   display: flex;
   height: 20px;
@@ -102,19 +112,16 @@ hr{
   font-size: 20px;
 }
 
-.contenedor-busqueda{
+.contenedor-busqueda {
   width: 870px;
   display: flex;
   flex-direction: row;
   justify-content: right;
+  gap: 10px;
+  margin: 10px 0px;
 }
 
-.contenedor-busqueda .icon{
-  margin: 10px;
-  padding: 5px;
-}
-
-.contenedor-busqueda input{
+.contenedor-busqueda input {
   border-radius: 10px;
   border: 1px solid gray;
   background-color: #d9d9d9;
@@ -122,20 +129,27 @@ hr{
   padding: 5px;
 }
 
-.formulario{
+.formulario {
   font-family: Inter;
+  max-width: 1280px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
 }
 
-.formulario input, select{
+.formulario input,
+select {
   border-radius: 10px;
   border: 0;
   background-color: #d9d9d9;
   width: auto;
-  height: 30px;
+
   padding: 2px;
 }
 
-.formulario label{
+.formulario label {
   font-weight: 700;
 }
 
@@ -144,15 +158,46 @@ hr{
   flex-direction: row;
 }
 
-.fila1{
+.fila1 {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.discapacidad {
+  display: flex;
+  flex-direction: column;
+}
+
+fieldset {
+  overflow: hidden;
+  margin: 30px;
+}
+
+.radio-buttons {
+  float: left;
+  clear: none;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  gap: 10px;
 }
 
-.discapacidad{
+.radios {
   display: flex;
-  flex-direction: column;
-  margin: 0 200px;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  text-align: center;
+  gap: 10px;
+}
+
+.localidad {
+  min-width: 50px;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  flex-wrap: wrap;
 }
