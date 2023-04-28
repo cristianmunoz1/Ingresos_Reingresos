@@ -5,12 +5,12 @@ import ModalIngresoPuntaje from "./Modal";
 function Tabla(props) {
   return (
     <div className="contenedor-tabla">
-      <table>
+      <table className="bordered">
         <thead>
           <tr>
             <th>Identificación</th>
             <th>Nombre</th>
-            <th>Codigo de programa</th>
+            <th>Código de programa</th>
             <th>Programa</th>
             <th>Sede</th>
             <th>Modalidad</th>
@@ -27,7 +27,7 @@ function Tabla(props) {
             <td>Pepito Pérez</td>
             <td>505</td>
             <td>Medicina</td>
-            <td>Medellin</td>
+            <td>Medellín</td>
             <td>Presencial</td>
           </tr>
           <tr>
