@@ -67,7 +67,7 @@ h1 {
   justify-content: space-between;
 }
 
-.fila-tipoingreso label{
+.fila-tipoingreso label {
   display: flex;
   flex-direction: column;
 }

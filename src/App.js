@@ -1,22 +1,15 @@
-import "./App.css";
-import "./styles/Header.css";
-import { Routes, Route } from "react-router-dom";
-import PaginaPrincipal from "./pages/PaginaPrincipal";
-import RegistroIngreso from "./pages/RegistroIngreso";
-import Form from "./pages/Form.js";
-import ListadoAd from "./pages/ListadoAd";
+import React from 'react';
+import './App.css';
+import store from './app/shared/redux/store/store.config';
+import AppRouter from './config/routers/AppRouter';
+import { Provider } from 'react-redux';
 
-function App() {
+const App = () => {
   return (
-    <div>
-      <Routes>
-        <Route path="/" element={<PaginaPrincipal />} />
-        <Route path="/registro" element={<RegistroIngreso />} />
-        <Route path="/registro/formulario" element={<Form />} />
-        <Route path="/admisiones" element={<ListadoAd />} />
-      </Routes>
-    </div>
+    <Provider store={store}>
+      <AppRouter />
+    </Provider>
   );
-}
+};
 
 export default App;

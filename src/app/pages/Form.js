@@ -1,22 +1,22 @@
-import "../App.css";
-import Boton from "../components/Boton";
-import { Link } from "react-router-dom";
-import Header from "../components/Header";
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import '../App.css';
+import Boton from '../components/Boton';
+import Header from '../components/Header';
 import {
   departamentos,
   municipios,
   programas,
-  universidades,
   sedes,
-} from "../utils/data";
-import { useState } from "react";
+  universidades,
+} from '../utils/data';
 
 function Form() {
-  const [departamentoCedula, setDepartamentoCedula] = useState("depto");
-  const [departamentoNacimiento, setDepartamentoNacimiento] = useState("depto");
-  const [departamentoResidencia, setDepartamentoResidencia] = useState("depto");
+  const [departamentoCedula, setDepartamentoCedula] = useState('depto');
+  const [departamentoNacimiento, setDepartamentoNacimiento] = useState('depto');
+  const [departamentoResidencia, setDepartamentoResidencia] = useState('depto');
 
-  const [tipoIngreso, setTipoIngreso] = useState("comun");
+  const [tipoIngreso, setTipoIngreso] = useState('comun');
 
   return (
     <div className="Form">
@@ -57,18 +57,26 @@ function Form() {
                   <option value="depto" disabled selected>
                     Departamento
                   </option>
-                  {departamentos.map((option) => {
-                    return <option value={option.value}>{option.label}</option>;
+                  {departamentos.map((option, index) => {
+                    return (
+                      <option key={index} value={option.value}>
+                        {option.label}
+                      </option>
+                    );
                   })}
                 </select>
                 <select required>
                   <option value="municipio" disabled selected>
                     Municipio
                   </option>
-                  {departamentoCedula === "depto"
+                  {departamentoCedula === 'depto'
                     ? null
-                    : municipios[departamentoCedula].map((municipio) => {
-                        return <option value={municipio}>{municipio}</option>;
+                    : municipios[departamentoCedula].map((municipio, index) => {
+                        return (
+                          <option key={index} value={municipio}>
+                            {municipio}
+                          </option>
+                        );
                       })}
                 </select>
               </div>
@@ -118,19 +126,29 @@ function Form() {
                   <option value="depto" disabled selected>
                     Departamento
                   </option>
-                  {departamentos.map((option) => {
-                    return <option value={option.value}>{option.label}</option>;
+                  {departamentos.map((option, index) => {
+                    return (
+                      <option key={index} value={option.value}>
+                        {option.label}
+                      </option>
+                    );
                   })}
                 </select>
                 <select required>
                   <option value="municipio" disabled selected>
                     Municipio
                   </option>
-                  {departamentoNacimiento === "depto"
+                  {departamentoNacimiento === 'depto'
                     ? null
-                    : municipios[departamentoNacimiento].map((municipio) => {
-                        return <option value={municipio}>{municipio}</option>;
-                      })}
+                    : municipios[departamentoNacimiento].map(
+                        (municipio, index) => {
+                          return (
+                            <option key={index} value={municipio}>
+                              {municipio}
+                            </option>
+                          );
+                        }
+                      )}
                 </select>
               </div>
             </label>
@@ -149,19 +167,29 @@ function Form() {
                   <option value="depto" disabled selected>
                     Departamento
                   </option>
-                  {departamentos.map((option) => {
-                    return <option value={option.value}>{option.label}</option>;
+                  {departamentos.map((option, index) => {
+                    return (
+                      <option key={index} value={option.value}>
+                        {option.label}
+                      </option>
+                    );
                   })}
                 </select>
                 <select required>
                   <option value="municipio" disabled selected>
                     Municipio
                   </option>
-                  {departamentoResidencia === "depto"
+                  {departamentoResidencia === 'depto'
                     ? null
-                    : municipios[departamentoResidencia].map((municipio) => {
-                        return <option value={municipio}>{municipio}</option>;
-                      })}
+                    : municipios[departamentoResidencia].map(
+                        (municipio, index) => {
+                          return (
+                            <option key={index} value={municipio}>
+                              {municipio}
+                            </option>
+                          );
+                        }
+                      )}
                 </select>
               </div>
             </label>
@@ -224,7 +252,7 @@ function Form() {
                 <br />
                 <select>
                   <option value="Antioquia" disabled selected>
-                    Seleccione{" "}
+                    Seleccione{' '}
                   </option>
                   <option value="tarjetaIdentidad">Fisica</option>
                   <option value="pasaporte">Intelectual</option>
@@ -245,7 +273,7 @@ function Form() {
             <h1>Información academica de Inscripción</h1>
             <fieldset>
               <div className="radio-buttons">
-                <label>Tipo de Ingreso:</label>{" "}
+                <label>Tipo de Ingreso:</label>{' '}
                 <label className="radios">
                   <input
                     type="radio"
@@ -267,7 +295,7 @@ function Form() {
               </div>
             </fieldset>
 
-            {tipoIngreso === "comun" ? (
+            {tipoIngreso === 'comun' ? (
               <div className="fila-tipoingreso">
                 <label>Ingreso común</label>
                 <label>
@@ -276,8 +304,10 @@ function Form() {
                     <option value="cedulaCiudadania" disabled selected>
                       Programa
                     </option>
-                    {programas.map((programa) => (
-                      <option value={programa.id}>{programa.nombre}</option>
+                    {programas.map((programa, index) => (
+                      <option key={index} value={programa.id}>
+                        {programa.nombre}
+                      </option>
                     ))}
                   </select>
                 </label>
@@ -287,8 +317,10 @@ function Form() {
                     <option value="cedulaCiudadania" disabled selected>
                       Sedes
                     </option>
-                    {sedes.map((sede) => (
-                      <option value={sede.id}>{sede.nombre}</option>
+                    {sedes.map((sede, index) => (
+                      <option key={index} value={sede.id}>
+                        {sede.nombre}
+                      </option>
                     ))}
                   </select>
                 </label>
@@ -314,8 +346,8 @@ function Form() {
                     <option value="cedulaCiudadania" disabled selected>
                       Universidad
                     </option>
-                    {universidades.map((universidad) => (
-                      <option value={universidad.id}>
+                    {universidades.map((universidad, index) => (
+                      <option key={index} value={universidad.id}>
                         {universidad.nombre}
                       </option>
                     ))}
@@ -327,8 +359,10 @@ function Form() {
                     <option value="cedulaCiudadania" disabled selected>
                       Programa
                     </option>
-                    {programas.map((programa) => (
-                      <option value={programa.id}>{programa.nombre}</option>
+                    {programas.map((programa, index) => (
+                      <option key={index} value={programa.id}>
+                        {programa.nombre}
+                      </option>
                     ))}
                   </select>
                 </label>
