@@ -18,15 +18,12 @@ export const login = (username, password) => {
         { username, password }
       );
       const { data, status } = loginResponse;
-      console.log({ loginResponse });
       // const { ok, firstName, lastName, token } = loginResponse.data;
       // const { id, email, roles } = jwtAdapter.verify(token);
-      const { ok, result } = data;
-      const { firstName, lastName, token } = result;
+      const { ok, firstName, lastName, token } = data;
       const { id, email, roles } = jwtAdapter.verify(token);
 
       localStorage.setItem('access_token', token);
-
       if (status !== 201) {
         throw new Error('Error en la petición');
       }
@@ -73,14 +70,29 @@ export const refreshToken = (currentToken) => {
   };
 };
 
-export const register = (firstName, lastName, email, password) => {
+export const register = (
+  firstName,
+  lastName,
+  email,
+  password,
+  address,
+  phoneNumber
+) => {
   return async (dispatch) => {
     // eslint-disable-next-line quotes
     dispatch(startAuthLoading("We're signing you up"));
     try {
       const registerResponse = await axiosAdapter.post(
         `${env.BACKEND_URL}/auth/register`,
-        { firstName, lastName, email, password, username: email.split('@')[0] }
+        {
+          firstName,
+          lastName,
+          email,
+          password,
+          address,
+          phoneNumber,
+          username: email.split('@')[0],
+        }
       );
       if (registerResponse.status !== 201) {
         throw new Error('Error en la petición');

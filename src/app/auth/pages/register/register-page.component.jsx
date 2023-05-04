@@ -7,7 +7,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import AuthLoading from '../../../shared/components/auth-loading/auth-loading.component';
@@ -29,18 +29,32 @@ const RegisterPage = () => {
     const password = data.get('password').toString();
     const firstName = data.get('firstName').toString();
     const lastName = data.get('lastName').toString();
+    const address = 'missing data';
+    const phoneNumber = 'missing data';
+
     if (!email.trim().endsWith('@udea.edu.co')) {
+      setDisplaySnackbarAlarm({
+        message:
+          'Email inválido, no cumple con el dominio de la universidad ❌',
+        timeout: 3500,
+      });
       return;
     }
-    dispatch(register(firstName, lastName, email, password));
+    dispatch(
+      register(firstName, lastName, email, password, address, phoneNumber)
+    );
     setDisplaySnackbarAlarm({
-      message: 'Registro exitoso, ahora puedes ingresar',
+      message: 'Registro exitoso, ahora puedes ingresar ✅',
       timeout: 3500,
     });
     setTimeout(() => {
       navigate('/auth/login');
     }, 4000);
   };
+
+  useEffect(() => {
+    setTimeout(() => setDisplaySnackbarAlarm(null), 4000);
+  }, [displaySnackbarAlarm]);
 
   if (authLoadingState) {
     return <AuthLoading message="Espera un momento, registro en proceso..." />;
