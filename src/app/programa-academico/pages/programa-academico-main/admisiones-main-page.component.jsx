@@ -1,9 +1,7 @@
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import MenuIcon from '@mui/icons-material/Menu';
-import NotificationsIcon from '@mui/icons-material/Notifications';
 import { Button } from '@mui/material';
 import MuiAppBar from '@mui/material/AppBar';
-import Badge from '@mui/material/Badge';
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
 import Divider from '@mui/material/Divider';
@@ -18,20 +16,25 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Outlet, useNavigate } from 'react-router-dom';
 import { logoutAction } from '../../../auth/redux/actions/auth.actions';
 import SnackbarAlert from '../../../shared/components/snackbar-alert/snackbar-alert.component';
-import SideBarStandardsItems from './components/sidebar-items/sidebar-items.component';
+import SideBarItems from './components/sidebar-items/sidebar-items.component';
 
-const AdminMainPage = () => {
+const ProgramaAcademicoMainPage = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const { firstName, lastName, username } = useSelector(
     (state) => state.authentication
   );
-  const navigate = useNavigate();
+
+  const { error, errorMessage, errorCause } = useSelector(
+    (state) => state.uiError
+  );
 
   const handleLogout = (event) => {
     event.preventDefault();
     dispatch(logoutAction({}));
     localStorage.clear();
-    navigate('/');
+    navigate('/auth/login');
   };
 
   const drawerWidth = 240;
@@ -65,8 +68,6 @@ const AdminMainPage = () => {
         easing: theme.transitions.easing.sharp,
         duration: theme.transitions.duration.enteringScreen,
       }),
-      height: '100vh',
-      border: 'none',
       boxSizing: 'border-box',
       ...(!open && {
         overflowX: 'hidden',
@@ -91,13 +92,13 @@ const AdminMainPage = () => {
 
   return (
     <ThemeProvider theme={mdTheme}>
-      <Box sx={{ display: 'flex', overflow: 'hidden' }}>
+      <Box sx={{ display: 'flex' }}>
         <CssBaseline />
         <AppBar position="absolute" open={open}>
           <Toolbar
             sx={{
-              pr: '24px',
-              backgroundColor: '#637F57',
+              pr: '24px', // keep right padding when drawer closed
+              backgroundColor: '#7ABA7E',
             }}
           >
             <IconButton
@@ -119,17 +120,17 @@ const AdminMainPage = () => {
               noWrap
               sx={{ flexGrow: 1 }}
             >
-              Ingresos y Reingresos - Panel administrativo
+              Ingresos y Reingresos - Estudiantes & Profesores
             </Typography>
             <Typography align="right">
               {firstName} {lastName} ({' '}
               <span style={{ fontWeight: 'bolder' }}>{username}</span> )
             </Typography>
             <Button
-              variant="contained"
-              color="success"
               onClick={handleLogout}
+              variant="contained"
               sx={{ marginLeft: 3 }}
+              color="success"
             >
               Logout
             </Button>
@@ -150,7 +151,7 @@ const AdminMainPage = () => {
           </Toolbar>
           <Divider />
           <List component="nav">
-            <SideBarStandardsItems />
+            <SideBarItems />
           </List>
         </Drawer>
         <Box
@@ -161,19 +162,22 @@ const AdminMainPage = () => {
                 ? theme.palette.grey[100]
                 : theme.palette.grey[900],
             flexGrow: 1,
+            height: '100vh',
+            overflow: 'auto',
+            marginTop: '33px',
           }}
         >
           <Outlet />
         </Box>
       </Box>
-      {/* {error && (
+      {error && (
         <SnackbarAlert
-          message={`- `}
+          message={`${errorMessage} - ${errorCause}`}
           timeout={5000}
-        /> 
-      )} */}
+        />
+      )}
     </ThemeProvider>
   );
 };
 
-export default AdminMainPage;
+export default ProgramaAcademicoMainPage;

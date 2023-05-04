@@ -2,11 +2,11 @@ import { configureStore } from '@reduxjs/toolkit';
 import { combineReducers } from 'redux';
 import thunk from 'redux-thunk';
 import authReducer from '../../../auth/redux/reducers/auth.reducer';
-import uiErrorReducer from '../reducers/shared.reducer';
+import sharedReducer from '../reducers/shared.reducer';
 
 const reducer = combineReducers({
   authentication: authReducer,
-  uiError: uiErrorReducer,
+  shared: sharedReducer,
 });
 
 const store = configureStore({

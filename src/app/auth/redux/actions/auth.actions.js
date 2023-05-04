@@ -16,12 +16,3 @@ export const logoutAction = () => ({
   type: types.authLogout,
   payload: {},
 });
-
-export const startAuthLoading = (authLoadingMessage) => ({
-  type: types.startAuthLoading,
-  payload: { authLoadingMessage },
-});
-export const finishAuthLoading = () => ({
-  type: types.finishAuthLoading,
-  payload: {},
-});

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import AdminMainPage from '../../app/admin/pages/admin-main/admin-main-page.component';
@@ -9,34 +9,55 @@ import AdmisionesMainPage from '../../app/admisiones/pages/admisiones-main/admis
 import AdmisionesPage1 from '../../app/admisiones/pages/admisiones1/admisiones1-page.component';
 import AdmisionesPage2 from '../../app/admisiones/pages/admisiones2/admisiones2-page.component';
 import AdmisionesPage3 from '../../app/admisiones/pages/admisiones3/admisiones3-page.component';
+import AdmisionesPage4 from '../../app/admisiones/pages/admisiones4/admisiones4-page.component';
 import { refreshToken } from '../../app/auth/api/auth.api';
 import LoginPage from '../../app/auth/pages/login/login-page.component';
 import RecoverPage from '../../app/auth/pages/recover/recover-page.component';
 import RegisterPage from '../../app/auth/pages/register/register-page.component';
+import LandingPage from '../../app/landing/pages/landing/landing-page.component';
+import NotFoundPage from '../../app/landing/pages/not-found/not-found-page.component';
+import ProgramaAcademicoMainPage from '../../app/programa-academico/pages/programa-academico-main/admisiones-main-page.component';
+import ProgramaAcademicoPage1 from '../../app/programa-academico/pages/programa-academico1/admisiones1-page.component';
+import ProgramaAcademicoPage2 from '../../app/programa-academico/pages/programa-academico2/admisiones2-page.component';
+import ProgramaAcademicoPage3 from '../../app/programa-academico/pages/programa-academico3/admisiones3-page.component';
 import AuthLoading from '../../app/shared/components/auth-loading/auth-loading.component';
 import ProfilePage from '../../app/user/pages/profile/profile-page.component';
 import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublicRoute';
-import LandingPage from '../../app/landing/pages/landing/landing-page.component';
-import NotFoundPage from '../../app/landing/pages/not-found/not-found-page.component';
+import SnackbarAlert from '../../app/shared/components/snackbar-alert/snackbar-alert.component';
+import { removeUIError } from '../../app/shared/redux/actions/shared.actions';
 
 export const STUDENT_ROLE = 'ROLE_STUDENT';
 export const TEACHER_ROLE = 'ROLE_TEACHER';
 export const ADMIN_ROLE = 'ROLE_ADMIN';
 
 const AppRouter = () => {
-  const { authLoadingState, authLoadingMessage } = useSelector(
-    (state) => state.authentication
-  );
   const dispatch = useDispatch();
+  const [displaySnackbarAlarm, setDisplaySnackbarAlarm] = useState();
+  const { error } = useSelector((state) => state.shared);
+  const { state: errorState, message: errorMessage } = error;
+
+  const { loading } = useSelector((state) => state.shared);
+
+  const { loading: loadingState, loading: loadingMessage } = loading;
+
+  useEffect(() => {
+    if (errorState) {
+      setDisplaySnackbarAlarm({
+        message: `${errorMessage} ❌`,
+        timeout: 3500,
+      });
+      setTimeout(() => dispatch(removeUIError()), 3500);
+    }
+  }, []);
 
   useEffect(() => {
     const token = localStorage.getItem('access_token');
     dispatch(refreshToken(token));
   }, []);
 
-  if (authLoadingState) {
-    return <AuthLoading message={authLoadingMessage} />;
+  if (loadingState) {
+    return <AuthLoading message={loadingMessage} />;
   }
 
   return (
@@ -52,10 +73,19 @@ const AppRouter = () => {
             />
           }
         >
-          <Route path="home1" element={<AdmisionesMainPage />}>
-            <Route path="home11" element={<AdmisionesPage1 />} />
-            <Route path="home12" element={<AdmisionesPage2 />} />
-            <Route path="home13" element={<AdmisionesPage3 />} />
+          <Route path="admisiones" element={<AdmisionesMainPage />}>
+            <Route path="" element={<AdmisionesPage1 />} />
+            <Route path="page2" element={<AdmisionesPage2 />} />
+            <Route path="page3" element={<AdmisionesPage3 />} />
+            <Route path="page4" element={<AdmisionesPage4 />} />
+          </Route>
+          <Route
+            path="programa-academico"
+            element={<ProgramaAcademicoMainPage />}
+          >
+            <Route path="" element={<ProgramaAcademicoPage1 />} />
+            <Route path="home12" element={<ProgramaAcademicoPage2 />} />
+            <Route path="home13" element={<ProgramaAcademicoPage3 />} />
           </Route>
         </Route>
 
@@ -63,12 +93,11 @@ const AppRouter = () => {
           path="/admin"
           element={<PrivateRoute allRequiredRoles={[ADMIN_ROLE]} />}
         >
-          <Route path="admin1" element={<AdminMainPage />}>
-            <Route path="admin11" element={<AdminPage1 />} />
-            <Route path="admin12" element={<AdminPage2 />} />
-            <Route path="admin13" element={<AdminPage3 />} />
+          <Route path="admisiones" element={<AdminMainPage />}>
+            <Route path="" element={<AdminPage1 />} />
+            <Route path="admin2" element={<AdminPage2 />} />
+            <Route path="admin3" element={<AdminPage3 />} />
           </Route>
-          <Route path="admin2" element={<AdminPage2 />} />
         </Route>
 
         <Route
@@ -88,6 +117,7 @@ const AppRouter = () => {
 
         <Route path="/*" element={<NotFoundPage />} />
       </Routes>
+      {displaySnackbarAlarm && <SnackbarAlert {...displaySnackbarAlarm} />}
     </BrowserRouter>
   );
 };

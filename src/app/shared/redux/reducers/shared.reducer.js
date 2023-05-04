@@ -1,27 +1,52 @@
 import types from '../../../shared/redux/types/types';
 
-// state = { error, errorMessage }
-
 const initialState = {
-  error: false,
-  errorMessage: '',
-  errorCause: '',
+  loading: {
+    state: false,
+    message: '',
+  },
+  error: {
+    state: false,
+    message: '',
+  },
 };
 
-const uiErrorReducer = (state = initialState, action) => {
+const sharedReducer = (state = initialState, action) => {
   switch (action.type) {
+    case types.startLoading:
+      return {
+        ...state,
+        loading: {
+          state: true,
+          message: action.payload.message,
+        },
+      };
+
+    case types.finishLoading:
+      return {
+        ...state,
+        loading: {
+          state: false,
+          message: '',
+        },
+      };
+
     case types.uiSetError:
       return {
         ...state,
-        error: true,
-        errorMessage: action.payload.errorMessage,
-        errorCause: action.payload.errorCause,
+        error: {
+          state: true,
+          message: action.payload.message,
+        },
       };
 
     case types.uiRemoveError:
       return {
         ...state,
-        ...initialState,
+        error: {
+          state: false,
+          message: '',
+        },
       };
 
     default:
@@ -29,4 +54,4 @@ const uiErrorReducer = (state = initialState, action) => {
   }
 };
 
-export default uiErrorReducer;
+export default sharedReducer;

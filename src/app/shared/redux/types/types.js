@@ -3,8 +3,9 @@ const types = {
   authLogin: '[auth] Login',
   authRegister: '[auth] Register',
   authLogout: '[auth] Logout',
-  startAuthLoading: '[auth] Start Loading',
-  finishAuthLoading: '[auth] Finish Loading',
+
+  startLoading: '[UI] Start Loading',
+  finishLoading: '[UI] Finish Loading',
 
   uiSetError: '[UI] Set Error',
   uiRemoveError: '[UI] Remove Error',

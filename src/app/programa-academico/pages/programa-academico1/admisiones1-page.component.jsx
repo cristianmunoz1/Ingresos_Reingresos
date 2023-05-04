@@ -1,6 +1,6 @@
 import React from 'react';
 
-const AdmisionesPage1 = () => {
+const ProgramaAcademicoPage1 = () => {
   return (
     <div>
       <h1>Default admisiones view</h1>
@@ -8,4 +8,4 @@ const AdmisionesPage1 = () => {
   );
 };
 
-export default AdmisionesPage1;
+export default ProgramaAcademicoPage1;

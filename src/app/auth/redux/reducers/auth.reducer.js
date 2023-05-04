@@ -28,20 +28,6 @@ const authReducer = (state = initialState, action) => {
     case types.authLogout:
       return { ...initialState };
 
-    case types.startAuthLoading:
-      return {
-        ...state,
-        authLoadingState: true,
-        authLoadingMessage: action.payload.authLoadingMessage,
-      };
-
-    case types.finishAuthLoading:
-      return {
-        ...state,
-        authLoadingState: false,
-        authLoadingMessage: '',
-      };
-
     default:
       return state;
   }

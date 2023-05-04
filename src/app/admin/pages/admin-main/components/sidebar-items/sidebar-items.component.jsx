@@ -20,7 +20,7 @@ const SideBarStandardsItems = () => {
         Administrador
       </ListSubheader>
 
-      <ListItemButton onClick={(e) => handleNavigate(e, '/admin/admin1')}>
+      <ListItemButton onClick={(e) => handleNavigate(e, '/admin/admisiones')}>
         <ListItemIcon>
           <MenuBookIcon />
         </ListItemIcon>
@@ -28,7 +28,7 @@ const SideBarStandardsItems = () => {
       </ListItemButton>
 
       <ListItemButton
-        onClick={(e) => handleNavigate(e, '/admin/admin1/admin11')}
+        onClick={(e) => handleNavigate(e, '/admin/admisiones/admin2')}
       >
         <ListItemIcon>
           <MenuBookIcon />
@@ -37,7 +37,7 @@ const SideBarStandardsItems = () => {
       </ListItemButton>
 
       <ListItemButton
-        onClick={(e) => handleNavigate(e, '/admin/admin1/admin12')}
+        onClick={(e) => handleNavigate(e, '/admin/admisiones/admin3')}
       >
         <ListItemIcon>
           <MenuBookIcon />
@@ -45,20 +45,20 @@ const SideBarStandardsItems = () => {
         <ListItemText primary="Titulo 3" />
       </ListItemButton>
 
-      <ListItemButton
+      {/* <ListItemButton
         onClick={(e) => handleNavigate(e, '/admin/admin1/admin13')}
       >
         <ListItemIcon>
           <MenuBookIcon />
         </ListItemIcon>
         <ListItemText primary="Titulo 4" />
-      </ListItemButton>
+      </ListItemButton> */}
 
       <ListSubheader component="div" inset>
         Admisiones
       </ListSubheader>
 
-      <ListItemButton onClick={(e) => handleNavigate(e, '/home/home1')}>
+      <ListItemButton onClick={(e) => handleNavigate(e, '/home/admisiones')}>
         <ListItemIcon>
           <MenuBookIcon />
         </ListItemIcon>

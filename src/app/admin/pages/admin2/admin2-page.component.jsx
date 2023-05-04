@@ -1,8 +1,12 @@
 import React, { Fragment } from 'react';
 import './admin2-page.component';
 
-const AdminPage3 = () => {
-  return <Fragment>AdminPage3</Fragment>;
+const AdminPage2 = () => {
+  return (
+    <div>
+      <h1>Admin view 2</h1>
+    </div>
+  );
 };
 
-export default AdminPage3;
+export default AdminPage2;

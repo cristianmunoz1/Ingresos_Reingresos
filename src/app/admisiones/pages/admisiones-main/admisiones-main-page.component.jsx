@@ -26,9 +26,9 @@ const AdmisionesMainPage = () => {
     (state) => state.authentication
   );
 
-  const { error, errorMessage, errorCause } = useSelector(
-    (state) => state.uiError
-  );
+  // const { error, errorMessage, errorCause } = useSelector(
+  //   (state) => state.uiError
+  // );
 
   const handleLogout = (event) => {
     event.preventDefault();
@@ -170,12 +170,12 @@ const AdmisionesMainPage = () => {
           <Outlet />
         </Box>
       </Box>
-      {error && (
+      {/* {error && (
         <SnackbarAlert
           message={`${errorMessage} - ${errorCause}`}
           timeout={5000}
         />
-      )}
+      )} */}
     </ThemeProvider>
   );
 };

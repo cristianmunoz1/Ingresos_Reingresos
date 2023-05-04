@@ -15,7 +15,7 @@ const NotFoundPage = () => {
   };
 
   const handleGoHome = () => {
-    navigate('/home/home1');
+    navigate('/home/admisiones');
   };
 
   return (

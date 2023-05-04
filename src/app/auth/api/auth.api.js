@@ -1,28 +1,25 @@
+import env from '../../../environment/credentials';
 import {
-  loginAction,
-  startAuthLoading,
-  finishAuthLoading,
-} from '../redux/actions/auth.actions';
+  finishLoading,
+  setUIError,
+  startLoading,
+} from '../../shared/redux/actions/shared.actions';
+import { loginAction } from '../redux/actions/auth.actions';
 import * as axiosAdapter from './adapters/axios/auth-axios.adapter';
 import * as jwtAdapter from './adapters/jwt/auth-jwt.adapter';
-import env from '../../../environment/credentials';
-import { setUIError } from '../../shared/redux/actions/shared.actions';
 
 export const login = (username, password) => {
   return async (dispatch) => {
     // eslint-disable-next-line quotes
-    dispatch(startAuthLoading("We're logging you in"));
+    dispatch(startLoading("We're logging you in"));
     try {
       const loginResponse = await axiosAdapter.post(
         `${env.BACKEND_URL}/auth/login`,
         { username, password }
       );
       const { data, status } = loginResponse;
-      // const { ok, firstName, lastName, token } = loginResponse.data;
-      // const { id, email, roles } = jwtAdapter.verify(token);
       const { ok, firstName, lastName, token } = data;
       const { id, email, roles } = jwtAdapter.verify(token);
-
       localStorage.setItem('access_token', token);
       if (status !== 201) {
         throw new Error('Error en la petición');
@@ -31,10 +28,14 @@ export const login = (username, password) => {
         throw new Error('Petición no exitosa');
       }
       dispatch(loginAction(id, username, firstName, lastName, email, roles));
+      localStorage.setItem(
+        'loggedInUser',
+        JSON.stringify({ firstName, lastName })
+      );
     } catch (err) {
-      dispatch(setUIError('Error en Login', 'some error'));
+      dispatch(setUIError('Error en Login'));
     } finally {
-      dispatch(finishAuthLoading());
+      dispatch(finishLoading());
     }
   };
 };
@@ -42,17 +43,17 @@ export const login = (username, password) => {
 export const refreshToken = (currentToken) => {
   return async (dispatch) => {
     // eslint-disable-next-line quotes
-    dispatch(startAuthLoading("We're logging you in"));
+    dispatch(startLoading('Refreshing credentials'));
     try {
       const refreshTokenResponse = await axiosAdapter.get(
-        `${env.BACKEND_URL}/auth/refresh`,
+        `${env.BACKEND_URL}/auth/refresh-token`,
         { headers: { authorization: `Bearer ${currentToken}` } }
       );
       const { data, status } = refreshTokenResponse;
-      // const { ok, firstName, lastName, token } = loginResponse.data;
-      // const { id, email, roles } = jwtAdapter.verify(token);
-      const { ok, result } = data;
-      const { firstName, lastName, token } = result;
+      const userInfo = JSON.parse(localStorage.getItem('loggedInUser'));
+      const firstName = userInfo.firstName || '';
+      const lastName = userInfo.lastName || '';
+      const { ok, token } = data;
       const { id, email, username, roles } = jwtAdapter.verify(token);
       localStorage.setItem('access_token', token);
       if (status !== 200) {
@@ -63,9 +64,9 @@ export const refreshToken = (currentToken) => {
       }
       dispatch(loginAction(id, username, firstName, lastName, email, roles));
     } catch (err) {
-      dispatch(setUIError('Error en Refresh token', 'some error'));
+      dispatch(setUIError('Error en Refresh token'));
     } finally {
-      dispatch(finishAuthLoading());
+      dispatch(finishLoading());
     }
   };
 };
@@ -80,7 +81,7 @@ export const register = (
 ) => {
   return async (dispatch) => {
     // eslint-disable-next-line quotes
-    dispatch(startAuthLoading("We're signing you up"));
+    dispatch(startLoading("We're signing you up"));
     try {
       const registerResponse = await axiosAdapter.post(
         `${env.BACKEND_URL}/auth/register`,
@@ -102,9 +103,9 @@ export const register = (
         throw new Error('Petición no exitosa');
       }
     } catch (err) {
-      dispatch(setUIError('Error en registro', 'some error'));
+      dispatch(setUIError('Error en registro'));
     } finally {
-      dispatch(finishAuthLoading());
+      dispatch(finishLoading());
     }
   };
 };

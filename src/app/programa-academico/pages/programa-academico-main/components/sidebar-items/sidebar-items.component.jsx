@@ -24,7 +24,7 @@ const SideBarItems = () => {
         Admisiones
       </ListSubheader>
 
-      <ListItemButton onClick={(e) => handleNavigate(e, '/home/admisiones')}>
+      <ListItemButton onClick={(e) => handleNavigate(e, '/admin/admisiones')}>
         <ListItemIcon>
           <MenuBookIcon />
         </ListItemIcon>
@@ -32,7 +32,7 @@ const SideBarItems = () => {
       </ListItemButton>
 
       <ListItemButton
-        onClick={(e) => handleNavigate(e, '/home/admisiones/page2')}
+        onClick={(e) => handleNavigate(e, '/admin/admisiones/page2')}
       >
         <ListItemIcon>
           <MenuBookIcon />
@@ -41,7 +41,7 @@ const SideBarItems = () => {
       </ListItemButton>
 
       <ListItemButton
-        onClick={(e) => handleNavigate(e, '/home/admisiones/page3')}
+        onClick={(e) => handleNavigate(e, '/admin/admisiones/page3')}
       >
         <ListItemIcon>
           <MenuBookIcon />
@@ -50,7 +50,7 @@ const SideBarItems = () => {
       </ListItemButton>
 
       <ListItemButton
-        onClick={(e) => handleNavigate(e, '/home/admisiones/page4')}
+        onClick={(e) => handleNavigate(e, '/admin/admisiones/page4')}
       >
         <ListItemIcon>
           <MenuBookIcon />
@@ -65,12 +65,12 @@ const SideBarItems = () => {
           </ListSubheader>
 
           <ListItemButton
-            onClick={(e) => handleNavigate(e, '/admin/admisiones')}
+            onClick={(e) => handleNavigate(e, '/home/admisiones')}
           >
             <ListItemIcon>
               <MenuBookIcon />
             </ListItemIcon>
-            <ListItemText primary="panel administrativo" />
+            <ListItemText primary="panel estudiantil" />
           </ListItemButton>
         </React.Fragment>
       )}

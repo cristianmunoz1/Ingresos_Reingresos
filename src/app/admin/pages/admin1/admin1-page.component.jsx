@@ -5,15 +5,9 @@ import './admin1-page.component';
 
 const AdminPage1 = () => {
   return (
-    <React.Fragment>
-      <Box
-        sx={{
-          marginTop: '60px',
-        }}
-      >
-        <Outlet />
-      </Box>
-    </React.Fragment>
+    <div>
+      <h1>Default admin view</h1>
+    </div>
   );
 };
 
