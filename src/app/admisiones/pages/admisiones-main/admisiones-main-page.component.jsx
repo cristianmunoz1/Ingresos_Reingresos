@@ -170,12 +170,6 @@ const AdmisionesMainPage = () => {
           <Outlet />
         </Box>
       </Box>
-      {/* {error && (
-        <SnackbarAlert
-          message={`${errorMessage} - ${errorCause}`}
-          timeout={5000}
-        />
-      )} */}
     </ThemeProvider>
   );
 };

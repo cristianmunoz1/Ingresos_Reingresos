@@ -1,10 +1,11 @@
 import React from 'react';
+import RegistroIngreso from '../../../pages/RegistroIngreso';
 
 const AdmisionesPage4 = () => {
   return (
-    <div>
-      <h1> AdmisionesPage4 </h1>
-    </div>
+    <React.Fragment>
+      <RegistroIngreso />
+    </React.Fragment>
   );
 };
 

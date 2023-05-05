@@ -1,10 +1,11 @@
 import React from 'react';
+import ListadoAd from '../../../pages/ListadoAd';
 
 const AdmisionesPage3 = () => {
   return (
-    <div>
-      <h1> AdmisionesPage3 </h1>
-    </div>
+    <React.Fragment>
+      <ListadoAd />
+    </React.Fragment>
   );
 };
 

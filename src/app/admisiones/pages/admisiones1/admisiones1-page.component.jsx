@@ -1,10 +1,11 @@
 import React from 'react';
+import PaginaPrincipal from '../../../pages/PaginaPrincipal';
 
 const AdmisionesPage1 = () => {
   return (
-    <div>
-      <h1>Default admisiones view</h1>
-    </div>
+    <React.Fragment>
+      <PaginaPrincipal />
+    </React.Fragment>
   );
 };
 

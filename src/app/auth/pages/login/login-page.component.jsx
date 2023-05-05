@@ -8,11 +8,12 @@ import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { login } from '../../api/auth.api';
 
 const LoginPage = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleLogin = (event) => {
     event.preventDefault();
@@ -20,6 +21,11 @@ const LoginPage = () => {
     const username = data.get('username').toString();
     const password = data.get('password').toString();
     dispatch(login(username, password));
+  };
+
+  const handleGoHome = (event) => {
+    event.preventDefault();
+    navigate('/');
   };
 
   return (
@@ -64,9 +70,18 @@ const LoginPage = () => {
             color="success"
             fullWidth
             variant="contained"
-            sx={{ mt: 3, mb: 2 }}
+            sx={{ mt: 3, mb: 1 }}
           >
             Ingresar
+          </Button>
+          <Button
+            onClick={handleGoHome}
+            color="success"
+            fullWidth
+            variant="outlined"
+            sx={{ mb: 2 }}
+          >
+            Regresar
           </Button>
           <Grid container>
             <Grid item xs>
