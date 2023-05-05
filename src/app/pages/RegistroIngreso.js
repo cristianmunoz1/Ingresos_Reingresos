@@ -1,10 +1,9 @@
 import { Link } from 'react-router-dom';
-import '../App.css';
 import Boton from '../components/Boton';
 import Header from '../components/Header';
 import React from 'react';
 
-function RegistroIngreso() {
+const RegistroIngreso = () => {
   return (
     <React.Fragment>
       <div className="RegistroIngreso">
@@ -31,6 +30,6 @@ function RegistroIngreso() {
       </div>
     </React.Fragment>
   );
-}
+};
 
 export default RegistroIngreso;

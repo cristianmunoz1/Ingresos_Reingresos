@@ -1,10 +1,9 @@
 import { Link } from 'react-router-dom';
-import '../App.css';
 import Boton from '../components/Boton';
 import Header from '../components/Header';
 import React from 'react';
 
-function PaginaPrincipal() {
+const PaginaPrincipal = () => {
   return (
     <React.Fragment>
       <div className="PaginaPrincipal">
@@ -20,6 +19,6 @@ function PaginaPrincipal() {
       </div>
     </React.Fragment>
   );
-}
+};
 
 export default PaginaPrincipal;

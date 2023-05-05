@@ -1,10 +1,11 @@
 import React from 'react';
+import Form from '../../../pages/Form';
 
 const AdmisionesPage2 = () => {
   return (
-    <div>
-      <h1>AdmisionesPage2</h1>
-    </div>
+    <React.Fragment>
+      <Form />
+    </React.Fragment>
   );
 };
 

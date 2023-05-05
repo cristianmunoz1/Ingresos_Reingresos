@@ -1,8 +1,8 @@
-import React from "react";
-import "../styles/Tabla.css";
-import ModalIngresoPuntaje from "./Modal";
+import React from 'react';
+import './styles/Tabla.css';
+import ModalIngresoPuntaje from './Modal';
 
-function Tabla(props) {
+const Tabla = () => {
   return (
     <div className="contenedor-tabla">
       <table className="bordered">
@@ -47,6 +47,6 @@ function Tabla(props) {
       </table>
     </div>
   );
-}
+};
 
 export default Tabla;

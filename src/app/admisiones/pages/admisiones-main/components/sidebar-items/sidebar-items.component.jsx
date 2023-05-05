@@ -37,7 +37,7 @@ const SideBarItems = () => {
         <ListItemIcon>
           <MenuBookIcon />
         </ListItemIcon>
-        <ListItemText primary="Titulo 2" />
+        <ListItemText primary="Ingresos" />
       </ListItemButton>
 
       <ListItemButton

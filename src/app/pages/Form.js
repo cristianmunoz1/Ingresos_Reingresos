@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import '../App.css';
 import Boton from '../components/Boton';
 import Header from '../components/Header';
 import {
@@ -9,9 +8,9 @@ import {
   programas,
   sedes,
   universidades,
-} from '../utils/data';
+} from '../shared/data/data';
 
-function Form() {
+const Form = () => {
   const [departamentoCedula, setDepartamentoCedula] = useState('depto');
   const [departamentoNacimiento, setDepartamentoNacimiento] = useState('depto');
   const [departamentoResidencia, setDepartamentoResidencia] = useState('depto');
@@ -396,6 +395,6 @@ function Form() {
       </div>
     </div>
   );
-}
+};
 
 export default Form;

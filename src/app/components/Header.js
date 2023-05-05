@@ -1,12 +1,17 @@
-import React from "react";
-import "../styles/Header.css";
+import React from 'react';
+import './styles/Header.css';
+import PropTypes from 'prop-types';
 
-function Header(props) {
+const Header = ({ text }) => {
   return (
     <div className="contenedor-header">
-      <h1>{props.text}</h1>
+      <h1>{text}</h1>
     </div>
   );
-}
+};
+
+Header.propTypes = {
+  text: PropTypes.string.isRequired,
+};
 
 export default Header;

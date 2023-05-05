@@ -4,7 +4,6 @@ import { fas } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import '../App.css';
 import Boton from '../components/Boton';
 import Header from '../components/Header';
 import Tabla from '../components/Tabla';
@@ -12,7 +11,7 @@ import React from 'react';
 
 library.add(fas, faTwitter, faFontAwesome);
 
-function ListadoAd() {
+const ListadoAd = () => {
   return (
     <React.Fragment>
       <div className="listado-admisiones">
@@ -40,6 +39,6 @@ function ListadoAd() {
       </div>
     </React.Fragment>
   );
-}
+};
 
 export default ListadoAd;

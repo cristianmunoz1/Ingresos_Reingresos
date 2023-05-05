@@ -1,11 +1,12 @@
-import { useState } from "react";
-import Button from "react-bootstrap/Button";
-import Form from "react-bootstrap/Form";
-import Modal from "react-bootstrap/Modal";
-import Col from "react-bootstrap/Col";
-import Row from "react-bootstrap/Row";
+import React, { useState } from 'react';
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
+import Modal from 'react-bootstrap/Modal';
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
+import PropTypes from 'prop-types';
 
-function ModalIngresoPuntaje(props) {
+const ModalIngresoPuntaje = ({ text }) => {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -14,7 +15,7 @@ function ModalIngresoPuntaje(props) {
   return (
     <>
       <Button variant="btn btn-link" onClick={handleShow}>
-        {props.text}
+        {text}
       </Button>
 
       <Modal show={show} onHide={handleClose}>
@@ -33,7 +34,7 @@ function ModalIngresoPuntaje(props) {
                     Identificación:
                   </Form.Label>
                   <br />
-                  <Form.Text>{props.text}</Form.Text>
+                  <Form.Text>{text}</Form.Text>
                 </Form.Group>
               </Col>
               <Col>
@@ -43,7 +44,7 @@ function ModalIngresoPuntaje(props) {
                 >
                   <Form.Label>Nombre</Form.Label>
                   <br />
-                  <Form.Text>{props.name}</Form.Text>
+                  <Form.Text>{name}</Form.Text>
                 </Form.Group>
               </Col>
             </Row>
@@ -86,6 +87,11 @@ function ModalIngresoPuntaje(props) {
       </Modal>
     </>
   );
-}
+};
+
+ModalIngresoPuntaje.propTypes = {
+  text: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+};
 
 export default ModalIngresoPuntaje;
