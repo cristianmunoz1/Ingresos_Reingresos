@@ -41,6 +41,15 @@ const SideBarItems = () => {
       </ListItemButton>
 
       <ListItemButton
+        onClick={(e) => handleNavigate(e, '/home/admisiones/page222')}
+      >
+        <ListItemIcon>
+          <MenuBookIcon />
+        </ListItemIcon>
+        <ListItemText primary="Titulo 2" />
+      </ListItemButton>
+
+      <ListItemButton
         onClick={(e) => handleNavigate(e, '/home/admisiones/page3')}
       >
         <ListItemIcon>

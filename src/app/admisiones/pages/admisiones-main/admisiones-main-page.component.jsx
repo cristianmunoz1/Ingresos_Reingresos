@@ -26,10 +26,6 @@ const AdmisionesMainPage = () => {
     (state) => state.authentication
   );
 
-  // const { error, errorMessage, errorCause } = useSelector(
-  //   (state) => state.uiError
-  // );
-
   const handleLogout = (event) => {
     event.preventDefault();
     dispatch(logoutAction({}));
@@ -123,7 +119,7 @@ const AdmisionesMainPage = () => {
               Ingresos y Reingresos - Estudiantes & Profesores
             </Typography>
             <Typography align="right">
-              {firstName} {lastName} ({' '}
+              {firstName} - {lastName} ({' '}
               <span style={{ fontWeight: 'bolder' }}>{username}</span> )
             </Typography>
             <Button

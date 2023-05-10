@@ -19,7 +19,6 @@ const Form = () => {
 
   return (
     <div className="Form">
-      <Header text="Ingresos UdeA" />
       <form className="formulario" method="POST">
         <div className="informacion-basica">
           <h1>Información básica</h1>

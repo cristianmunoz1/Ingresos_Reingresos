@@ -1,6 +1,6 @@
 import types from '../../../shared/redux/types/types';
 
-// state = { id, username, email, firstName, lastName, roles, authLoadingState, authLoadingMessage }
+// state = { id, username, email, firstName, lastName, roles }
 
 const initialState = {};
 

@@ -26,6 +26,7 @@ import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublicRoute';
 import SnackbarAlert from '../../app/shared/components/snackbar-alert/snackbar-alert.component';
 import { removeUIError } from '../../app/shared/redux/actions/shared.actions';
+import AdmisionesPage222 from '../../app/admisiones/pages/admisiones2/admisiones222-page.component';
 
 export const STUDENT_ROLE = 'ROLE_STUDENT';
 export const TEACHER_ROLE = 'ROLE_TEACHER';
@@ -76,9 +77,11 @@ const AppRouter = () => {
           <Route path="admisiones" element={<AdmisionesMainPage />}>
             <Route path="" element={<AdmisionesPage1 />} />
             <Route path="page2" element={<AdmisionesPage2 />} />
+            <Route path="page222" element={<AdmisionesPage222 />} />
             <Route path="page3" element={<AdmisionesPage3 />} />
             <Route path="page4" element={<AdmisionesPage4 />} />
           </Route>
+
           <Route
             path="programa-academico"
             element={<ProgramaAcademicoMainPage />}
