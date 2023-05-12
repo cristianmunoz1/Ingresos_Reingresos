@@ -9,13 +9,16 @@ import Stepper from '@mui/material/Stepper';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
 import React from 'react';
+import AdditionalInfoForm from '../additional-info-form/additional-info-form.component';
+import BornAndResidenceForm from '../born-form/identity-form.component';
 import IdentityForm from '../identity-form/identity-form.component';
 import NamesForm from '../names-form/names-form.component';
+import AcademicInfoForm from '../academic-info-form/academic-info-form.component';
 
 const steps = [
   'Identificación',
   'Nombres y apellidos',
-  'Información de contacto',
+  'Nacimiento y residencia',
   'Información adicional',
   'Tipo de ingreso',
 ];
@@ -61,8 +64,11 @@ const IngresosForm = () => {
             </React.Fragment>
           ) : (
             <React.Fragment>
-              <IdentityForm steps={steps} />
-              <NamesForm steps={steps} />
+              <IdentityForm steps={steps} handleNext={handleNext} />
+              <NamesForm steps={steps} handleNext={handleNext} />
+              <BornAndResidenceForm steps={steps} handleNext={handleNext} />
+              <AdditionalInfoForm steps={steps} handleNext={handleNext} />
+              <AcademicInfoForm steps={steps} handleNext={handleNext} />
               <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
                 {activeStep !== 0 && (
                   <Button onClick={handleBack} sx={{ mt: 3, ml: 1 }}>

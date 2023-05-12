@@ -9,86 +9,66 @@ import React from 'react';
 import departments from '../../../../../shared/data/departments';
 import useForm from '../../../../../shared/hooks/useForm';
 
-const NamesForm = ({ steps }) => {
+const NamesForm = ({ steps, handleNext }) => {
   const [formValues, setFormValues] = useForm({
-    docType: '',
-    docValue: '',
-    department: departments.at(0)?.id + '',
+    firstName: '',
+    middleName: '',
+    firstSureName: '',
+    secondSureName: '',
   });
 
-  const { docType, docValue, department } = formValues;
-
-  const handleChange = (event) => {
-    setFormValues(event);
-  };
+  const { firstName, middleName, firstSureName, secondSureName } = formValues;
 
   return (
     <React.Fragment>
-      <Typography gutterBottom>{steps.at(0)}</Typography>
-      {JSON.stringify(
-        departments.find((dep) => dep.id + '' === department)?.regions.at(0)
-          ?.name + ''
-      )}
+      <Typography gutterBottom>{steps.at(1)}</Typography>
       <Divider sx={{ margin: '5px 0px 10px 0px' }} />
-      <Grid container spacing={2}>
-        <Grid item xs={12}>
-          <TextField
-            id="address2"
-            name="address2"
-            label="Address line 2"
-            fullWidth
-            autoComplete="shipping address-line2"
-            variant="outlined"
-          />
-        </Grid>
-        <Grid item xs={12} sm={6}>
+      <Grid container spacing={2} mb={3}>
+        <Grid item xs={12} sm={3}>
           <TextField
             required
-            id="city"
-            name="city"
-            label="City"
+            id="firstName"
+            name="firstName"
+            value={firstName}
+            onChange={setFormValues}
+            label="Primer nombre"
             fullWidth
-            autoComplete="shipping address-level2"
             variant="outlined"
           />
         </Grid>
-        <Grid item xs={12} sm={6}>
+        <Grid item xs={12} sm={3}>
           <TextField
-            id="state"
-            name="state"
-            label="State/Province/Region"
+            id="middleName"
+            name="middleName"
+            value={middleName}
+            onChange={setFormValues}
+            label="Segundo nombre"
             fullWidth
             variant="outlined"
           />
         </Grid>
-        <Grid item xs={12} sm={6}>
-          <TextField
-            required
-            id="zip"
-            name="zip"
-            label="Zip / Postal code"
-            fullWidth
-            autoComplete="shipping postal-code"
-            variant="outlined"
-          />
-        </Grid>
-        <Grid item xs={12} sm={6}>
+        <Grid item xs={12} sm={3}>
           <TextField
             required
-            id="country"
-            name="country"
-            label="Country"
+            id="firstSureName"
+            name="firstSureName"
+            value={firstSureName}
+            onChange={setFormValues}
+            label="Primer apellido"
             fullWidth
-            autoComplete="shipping country"
             variant="outlined"
           />
         </Grid>
-        <Grid item xs={12}>
-          <FormControlLabel
-            control={
-              <Checkbox color="secondary" name="saveAddress" value="yes" />
-            }
-            label="Use this address for payment details"
+        <Grid item xs={12} sm={3}>
+          <TextField
+            required
+            id="secondSureName"
+            name="secondSureName"
+            value={secondSureName}
+            onChange={setFormValues}
+            label="Segundo apellido"
+            fullWidth
+            variant="outlined"
           />
         </Grid>
       </Grid>
@@ -98,6 +78,7 @@ const NamesForm = ({ steps }) => {
 
 NamesForm.propTypes = {
   steps: PropTypes.arrayOf(PropTypes.string),
+  handleNext: PropTypes.object,
 };
 
 export default NamesForm;
