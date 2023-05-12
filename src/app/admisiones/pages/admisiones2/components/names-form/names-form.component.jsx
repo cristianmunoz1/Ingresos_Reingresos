@@ -5,11 +5,11 @@ import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import departments from '../../../../../shared/data/departments';
 import useForm from '../../../../../shared/hooks/useForm';
 
-const NamesForm = ({ steps, handleNext }) => {
+const NamesForm = ({ steps, activeStep }) => {
   const [formValues, setFormValues] = useForm({
     firstName: '',
     middleName: '',
@@ -19,6 +19,12 @@ const NamesForm = ({ steps, handleNext }) => {
 
   const { firstName, middleName, firstSureName, secondSureName } = formValues;
 
+  const [disabled, setDisabled] = useState(activeStep !== 1);
+
+  useEffect(() => {
+    setDisabled(activeStep !== 1);
+  }, [activeStep]);
+
   return (
     <React.Fragment>
       <Typography gutterBottom>{steps.at(1)}</Typography>
@@ -27,6 +33,7 @@ const NamesForm = ({ steps, handleNext }) => {
         <Grid item xs={12} sm={3}>
           <TextField
             required
+            disabled={disabled}
             id="firstName"
             name="firstName"
             value={firstName}
@@ -40,6 +47,7 @@ const NamesForm = ({ steps, handleNext }) => {
           <TextField
             id="middleName"
             name="middleName"
+            disabled={disabled}
             value={middleName}
             onChange={setFormValues}
             label="Segundo nombre"
@@ -52,6 +60,7 @@ const NamesForm = ({ steps, handleNext }) => {
             required
             id="firstSureName"
             name="firstSureName"
+            disabled={disabled}
             value={firstSureName}
             onChange={setFormValues}
             label="Primer apellido"
@@ -64,6 +73,7 @@ const NamesForm = ({ steps, handleNext }) => {
             required
             id="secondSureName"
             name="secondSureName"
+            disabled={disabled}
             value={secondSureName}
             onChange={setFormValues}
             label="Segundo apellido"
@@ -78,7 +88,7 @@ const NamesForm = ({ steps, handleNext }) => {
 
 NamesForm.propTypes = {
   steps: PropTypes.arrayOf(PropTypes.string),
-  handleNext: PropTypes.object,
+  activeStep: PropTypes.number,
 };
 
 export default NamesForm;

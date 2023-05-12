@@ -3,18 +3,23 @@ import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import PropTypes from 'prop-types';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import departments from '../../../../../shared/data/departments';
 import docTypes from '../../../../../shared/data/document-types';
 import useForm from '../../../../../shared/hooks/useForm';
 
-const IdentityForm = ({ steps, handleNext }) => {
+const IdentityForm = ({ steps, activeStep }) => {
   const [isDepartmentSelected, setIsDepartmentSelected] = useState(false);
   const [formValues, setFormValues] = useForm({
     docType: '',
     docValue: '',
     department: departments.at(0)?.id + '',
   });
+  const [disabled, setDisabled] = useState(activeStep !== 0);
+
+  useEffect(() => {
+    setDisabled(activeStep !== 0);
+  }, [activeStep]);
 
   const { docType, docValue, department } = formValues;
 
@@ -25,6 +30,7 @@ const IdentityForm = ({ steps, handleNext }) => {
       <Grid container spacing={2} mb={3}>
         <Grid item xs={12} sm={2}>
           <Select
+            disabled={disabled}
             labelId="demo-simple-select-helper-label"
             id="idType"
             name="idType"
@@ -43,6 +49,7 @@ const IdentityForm = ({ steps, handleNext }) => {
         <Grid item xs={12} sm={3}>
           <TextField
             required
+            disabled={disabled}
             id="idValue"
             name="idValue"
             label="Número de identificación"
@@ -56,6 +63,7 @@ const IdentityForm = ({ steps, handleNext }) => {
             required
             id="idExpDate"
             name="idExpDate"
+            disabled={disabled}
             label="Fecha de expedición"
             fullWidth
             autoComplete="family-name"
@@ -67,6 +75,7 @@ const IdentityForm = ({ steps, handleNext }) => {
             labelId="demo-simple-select-helper-label"
             id="departament"
             name="department"
+            disabled={disabled}
             value={departments.at(0)?.id + ''}
             label="Departamento"
             fullWidth
@@ -84,6 +93,7 @@ const IdentityForm = ({ steps, handleNext }) => {
             labelId="demo-simple-select-helper-label"
             id="departament"
             name="department"
+            disabled={disabled}
             value={
               departments
                 .find((dep) => dep.id + '' === department)
@@ -109,7 +119,7 @@ const IdentityForm = ({ steps, handleNext }) => {
 
 IdentityForm.propTypes = {
   steps: PropTypes.arrayOf(PropTypes.string),
-  handleNext: PropTypes.object,
+  activeStep: PropTypes.number,
 };
 
 export default IdentityForm;

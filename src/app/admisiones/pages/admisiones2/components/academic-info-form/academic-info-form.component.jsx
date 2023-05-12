@@ -10,7 +10,7 @@ import {
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import courses from '../../../../../shared/data/courses';
 import incomingTypes from '../../../../../shared/data/incoming-types';
 import modalidades from '../../../../../shared/data/modalidad';
@@ -18,12 +18,18 @@ import sedes from '../../../../../shared/data/sedes';
 import universities from '../../../../../shared/data/universities';
 import useForm from '../../../../../shared/hooks/useForm';
 
-const AcademicInfoForm = ({ steps, handleNext }) => {
+const AcademicInfoForm = ({ steps, activeStep }) => {
   const [formValues, setFormValues] = useForm({
     incomingType: '',
   });
 
   const { incomingType } = formValues;
+
+  const [disabled, setDisabled] = useState(activeStep !== 4);
+
+  useEffect(() => {
+    setDisabled(activeStep !== 4);
+  }, [activeStep]);
 
   return (
     <React.Fragment>
@@ -42,6 +48,7 @@ const AcademicInfoForm = ({ steps, handleNext }) => {
               {incomingTypes.map((incomingType) => (
                 <FormControlLabel
                   key={incomingType.id}
+                  disabled={disabled}
                   value={incomingType.name}
                   control={<Radio />}
                   label={incomingType.label}
@@ -58,6 +65,7 @@ const AcademicInfoForm = ({ steps, handleNext }) => {
             <Select
               labelId="demo-simple-select-helper-label"
               id="Programa"
+              disabled={disabled}
               name="Programa"
               value={courses.at(0)?.name}
               label="Discapacidad"
@@ -74,6 +82,7 @@ const AcademicInfoForm = ({ steps, handleNext }) => {
           <Grid item xs={12} sm={4}>
             <Select
               id="Sede"
+              disabled={disabled}
               name="Sede"
               value={sedes.at(0)?.name}
               label="Discapacidad"
@@ -91,6 +100,7 @@ const AcademicInfoForm = ({ steps, handleNext }) => {
             <Select
               id="modalidad"
               name="modalidad"
+              disabled={disabled}
               value={modalidades.at(0)?.name}
               label="Modalidad"
               fullWidth
@@ -112,6 +122,7 @@ const AcademicInfoForm = ({ steps, handleNext }) => {
             <Select
               id="universityOfOrigin"
               name="universityOfOrigin"
+              disabled={disabled}
               value={universities.at(0)?.name}
               label="Universidad de orígen"
               fullWidth
@@ -130,6 +141,7 @@ const AcademicInfoForm = ({ steps, handleNext }) => {
               name="Programa"
               value={courses.at(0)?.name}
               label="Discapacidad"
+              disabled={disabled}
               fullWidth
               onChange={setFormValues}
             >
@@ -145,6 +157,7 @@ const AcademicInfoForm = ({ steps, handleNext }) => {
               id="Sede"
               name="Sede"
               value={sedes.at(0)?.name}
+              disabled={disabled}
               label="Discapacidad"
               fullWidth
               onChange={setFormValues}
@@ -160,6 +173,7 @@ const AcademicInfoForm = ({ steps, handleNext }) => {
             <Select
               id="modalidad"
               name="modalidad"
+              disabled={disabled}
               value={modalidades.at(0)?.name}
               label="Modalidad"
               fullWidth
@@ -180,7 +194,7 @@ const AcademicInfoForm = ({ steps, handleNext }) => {
 
 AcademicInfoForm.propTypes = {
   steps: PropTypes.arrayOf(PropTypes.string),
-  handleNext: PropTypes.object,
+  activeStep: PropTypes.number,
 };
 
 export default AcademicInfoForm;

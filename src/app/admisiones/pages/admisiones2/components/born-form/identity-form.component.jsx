@@ -3,12 +3,11 @@ import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import PropTypes from 'prop-types';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import departments from '../../../../../shared/data/departments';
-import docTypes from '../../../../../shared/data/document-types';
 import useForm from '../../../../../shared/hooks/useForm';
 
-const BornAndResidenceForm = ({ steps, handleNext }) => {
+const BornAndResidenceForm = ({ steps, activeStep }) => {
   const [isDepartmentSelected, setIsDepartmentSelected] = useState(false);
   const [formValues, setFormValues] = useForm({
     docType: '',
@@ -17,6 +16,12 @@ const BornAndResidenceForm = ({ steps, handleNext }) => {
   });
 
   const { docType, docValue, department } = formValues;
+
+  const [disabled, setDisabled] = useState(activeStep !== 2);
+
+  useEffect(() => {
+    setDisabled(activeStep !== 2);
+  }, [activeStep]);
 
   return (
     <React.Fragment>
@@ -27,6 +32,7 @@ const BornAndResidenceForm = ({ steps, handleNext }) => {
           <TextField
             required
             id="idValue"
+            disabled={disabled}
             name="idValue"
             label="Número de identificación"
             fullWidth
@@ -38,6 +44,7 @@ const BornAndResidenceForm = ({ steps, handleNext }) => {
           <Select
             labelId="demo-simple-select-helper-label"
             id="departament"
+            disabled={disabled}
             name="department"
             value={departments.at(0)?.id + ''}
             label="Departamento"
@@ -55,6 +62,7 @@ const BornAndResidenceForm = ({ steps, handleNext }) => {
           <Select
             labelId="demo-simple-select-helper-label"
             id="departament"
+            disabled={disabled}
             name="department"
             value={
               departments
@@ -78,6 +86,7 @@ const BornAndResidenceForm = ({ steps, handleNext }) => {
           <Select
             labelId="demo-simple-select-helper-label"
             id="departament"
+            disabled={disabled}
             name="department"
             value={departments.at(0)?.id + ''}
             label="Departamento"
@@ -95,6 +104,7 @@ const BornAndResidenceForm = ({ steps, handleNext }) => {
           <Select
             labelId="demo-simple-select-helper-label"
             id="departament"
+            disabled={disabled}
             name="department"
             value={
               departments
@@ -121,7 +131,7 @@ const BornAndResidenceForm = ({ steps, handleNext }) => {
 
 BornAndResidenceForm.propTypes = {
   steps: PropTypes.arrayOf(PropTypes.string),
-  handleNext: PropTypes.object,
+  activeStep: PropTypes.number,
 };
 
 export default BornAndResidenceForm;

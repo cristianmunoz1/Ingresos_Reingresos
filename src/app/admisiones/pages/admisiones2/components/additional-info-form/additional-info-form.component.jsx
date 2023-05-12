@@ -10,14 +10,14 @@ import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import genderTypes from '../../../../../shared/data/gender-types';
 import useForm from '../../../../../shared/hooks/useForm';
 import specialIncomeTypes from '../../../../../shared/data/special-income-types';
 import phonePrefixes from '../../../../../shared/data/phone-prefixes';
 import disabilityTypes from '../../../../../shared/data/disability-types';
 
-const AdditionalInfoForm = ({ steps, handleNext }) => {
+const AdditionalInfoForm = ({ steps, activeStep }) => {
   const [formValues, setFormValues] = useForm({
     specialIncome: false,
     specialIncomeType: specialIncomeTypes.at(0)?.id,
@@ -29,6 +29,12 @@ const AdditionalInfoForm = ({ steps, handleNext }) => {
   const { specialIncome, specialIncomeType, email, phoneNumber, phonePrefix } =
     formValues;
 
+  const [disabled, setDisabled] = useState(activeStep !== 3);
+
+  useEffect(() => {
+    setDisabled(activeStep !== 3);
+  }, [activeStep]);
+
   return (
     <React.Fragment>
       <Typography gutterBottom>{steps.at(3)}</Typography>
@@ -39,6 +45,7 @@ const AdditionalInfoForm = ({ steps, handleNext }) => {
             labelId="demo-simple-select-helper-label"
             id="idType"
             name="idType"
+            disabled={disabled}
             value={genderTypes.at(0)?.name}
             label="Género"
             fullWidth
@@ -54,7 +61,7 @@ const AdditionalInfoForm = ({ steps, handleNext }) => {
         <Grid item xs={12} sm={2}>
           <FormControlLabel
             value="specialIncome"
-            control={<Checkbox />}
+            control={<Checkbox disabled={disabled} />}
             label="¿Ingreso especial?"
             labelPlacement="top"
           />
@@ -63,6 +70,7 @@ const AdditionalInfoForm = ({ steps, handleNext }) => {
           <Select
             labelId="demo-simple-select-helper-label"
             id="specialIncome"
+            disabled={disabled}
             name="specialIncome"
             value={specialIncomeTypes.at(0)?.name}
             label="Ingreso especial"
@@ -80,6 +88,7 @@ const AdditionalInfoForm = ({ steps, handleNext }) => {
           <TextField
             id="email"
             name="email"
+            disabled={disabled}
             value={email}
             onChange={setFormValues}
             label="Email"
@@ -91,6 +100,7 @@ const AdditionalInfoForm = ({ steps, handleNext }) => {
           <Select
             labelId="demo-simple-select-helper-label"
             id="phonePrefix"
+            disabled={disabled}
             name="phonePrefix"
             value={phonePrefix}
             label="Prefijo"
@@ -108,6 +118,7 @@ const AdditionalInfoForm = ({ steps, handleNext }) => {
           <TextField
             required
             id="phoneNumber"
+            disabled={disabled}
             name="phoneNumber"
             value={phoneNumber}
             onChange={setFormValues}
@@ -127,7 +138,7 @@ const AdditionalInfoForm = ({ steps, handleNext }) => {
         <Grid item xs={12} sm={3}>
           <FormControlLabel
             value="specialIncome"
-            control={<Checkbox />}
+            control={<Checkbox disabled={disabled} />}
             label="¿Presenta alguna discapacidad?"
             labelPlacement="top"
           />
@@ -136,6 +147,7 @@ const AdditionalInfoForm = ({ steps, handleNext }) => {
           <Select
             labelId="demo-simple-select-helper-label"
             id="Discapacidad"
+            disabled={disabled}
             name="Discapacidad"
             value={disabilityTypes.at(0)?.name}
             label="Discapacidad"
@@ -153,9 +165,14 @@ const AdditionalInfoForm = ({ steps, handleNext }) => {
           <FormControlLabel
             value="specialIncome"
             control={
-              <Button variant="contained" fullWidth component="label">
+              <Button
+                variant="contained"
+                fullWidth
+                component="label"
+                disabled={disabled}
+              >
                 Subir archivo
-                <input type="file" hidden />
+                <input disabled={disabled} type="file" hidden />
               </Button>
             }
             label="Subir acta de bachiller"
@@ -169,7 +186,7 @@ const AdditionalInfoForm = ({ steps, handleNext }) => {
 
 AdditionalInfoForm.propTypes = {
   steps: PropTypes.arrayOf(PropTypes.string),
-  handleNext: PropTypes.object,
+  activeStep: PropTypes.number,
 };
 
 export default AdditionalInfoForm;

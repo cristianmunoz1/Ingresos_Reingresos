@@ -64,15 +64,15 @@ const IngresosForm = () => {
             </React.Fragment>
           ) : (
             <React.Fragment>
-              <IdentityForm steps={steps} handleNext={handleNext} />
-              <NamesForm steps={steps} handleNext={handleNext} />
-              <BornAndResidenceForm steps={steps} handleNext={handleNext} />
-              <AdditionalInfoForm steps={steps} handleNext={handleNext} />
-              <AcademicInfoForm steps={steps} handleNext={handleNext} />
+              <IdentityForm steps={steps} activeStep={activeStep} />
+              <NamesForm steps={steps} activeStep={activeStep} />
+              <BornAndResidenceForm steps={steps} activeStep={activeStep} />
+              <AdditionalInfoForm steps={steps} activeStep={activeStep} />
+              <AcademicInfoForm steps={steps} activeStep={activeStep} />
               <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
                 {activeStep !== 0 && (
                   <Button onClick={handleBack} sx={{ mt: 3, ml: 1 }}>
-                    Back
+                    Atrás
                   </Button>
                 )}
                 <Button
@@ -80,7 +80,7 @@ const IngresosForm = () => {
                   onClick={handleNext}
                   sx={{ mt: 3, ml: 1 }}
                 >
-                  {activeStep === steps.length - 1 ? 'Place order' : 'Next'}
+                  {activeStep === steps.length - 1 ? 'Registrar' : 'Siguiente'}
                 </Button>
               </Box>
             </React.Fragment>
