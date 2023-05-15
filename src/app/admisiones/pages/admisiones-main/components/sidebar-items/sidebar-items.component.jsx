@@ -21,15 +21,9 @@ const SideBarItems = () => {
   return (
     <React.Fragment>
       <ListSubheader component="div" inset>
-        Admisiones
+        Registro
       </ListSubheader>
 
-      <ListItemButton onClick={(e) => handleNavigate(e, '/home/admisiones')}>
-        <ListItemIcon>
-          <MenuBookIcon />
-        </ListItemIcon>
-        <ListItemText primary="Titulo 1" />
-      </ListItemButton>
 
       <ListItemButton
         onClick={(e) => handleNavigate(e, '/home/admisiones/page2')}
@@ -37,7 +31,7 @@ const SideBarItems = () => {
         <ListItemIcon>
           <MenuBookIcon />
         </ListItemIcon>
-        <ListItemText primary="Titulo 2" />
+        <ListItemText primary="Formulario " />
       </ListItemButton>
 
       <ListItemButton
@@ -46,7 +40,7 @@ const SideBarItems = () => {
         <ListItemIcon>
           <MenuBookIcon />
         </ListItemIcon>
-        <ListItemText primary="Titulo 2" />
+        <ListItemText primary="Formulario v1" />
       </ListItemButton>
 
       <ListItemButton
@@ -55,17 +49,10 @@ const SideBarItems = () => {
         <ListItemIcon>
           <MenuBookIcon />
         </ListItemIcon>
-        <ListItemText primary="Titulo 3" />
+        <ListItemText primary="Tabla" />
       </ListItemButton>
 
-      <ListItemButton
-        onClick={(e) => handleNavigate(e, '/home/admisiones/page4')}
-      >
-        <ListItemIcon>
-          <MenuBookIcon />
-        </ListItemIcon>
-        <ListItemText primary="Totulo 4" />
-      </ListItemButton>
+      
 
       {roles.includes(ADMIN_ROLE) && (
         <React.Fragment>

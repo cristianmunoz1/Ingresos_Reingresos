@@ -15,12 +15,6 @@ const ListadoAd = () => {
   return (
     <React.Fragment>
       <div className="listado-admisiones">
-        <Header text="Admisiones ingresos comunes" />
-        <div className="contenedor-botones-listado">
-          <Link to="/">
-            <Boton text="Atrás" />
-          </Link>
-        </div>
         <div className="contenedor-busqueda">
           <Button variant="light">
             <FontAwesomeIcon icon="fa-solid fa-arrow-down-wide-short" />

@@ -4,6 +4,7 @@ import ModalIngresoPuntaje from './Modal';
 
 const Tabla = () => {
   return (
+    <><div className='espacio'> </div>
     <div className="contenedor-tabla">
       <table className="bordered">
         <thead>
@@ -45,7 +46,7 @@ const Tabla = () => {
           </tr>
         </tbody>
       </table>
-    </div>
+    </div></>
   );
 };
 
