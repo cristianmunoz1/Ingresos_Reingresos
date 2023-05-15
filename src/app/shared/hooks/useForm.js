@@ -10,11 +10,18 @@ const useForm = (initialState) => {
     });
   };
 
+  const handleCheckedChange = (event) => {
+    setFormValues({
+      ...formValues,
+      [event.target.name]: event.target.checked,
+    });
+  };
+
   const resetForm = (state) => {
     setFormValues(state);
   };
 
-  return [formValues, handleInputChange, resetForm];
+  return [formValues, handleInputChange, handleCheckedChange, resetForm];
 };
 
 export default useForm;

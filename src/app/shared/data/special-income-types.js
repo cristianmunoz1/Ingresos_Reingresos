@@ -6,6 +6,11 @@ const specialIncomeTypes = [
     label: 'Indígenas, negras y raizales',
   },
   { id: 3, name: 'LEY_1084_2006', label: 'LEY 1084 del 2006' },
+  {
+    id: 4,
+    name: 'DEPORTISTAS_ALT_REND',
+    label: 'Deportistas de alto rendimiento',
+  },
 ];
 
 export default specialIncomeTypes;

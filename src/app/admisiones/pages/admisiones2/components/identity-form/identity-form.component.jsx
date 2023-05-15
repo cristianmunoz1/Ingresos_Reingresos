@@ -8,20 +8,31 @@ import departments from '../../../../../shared/data/departments';
 import docTypes from '../../../../../shared/data/document-types';
 import useForm from '../../../../../shared/hooks/useForm';
 
-const IdentityForm = ({ steps, activeStep }) => {
-  const [isDepartmentSelected, setIsDepartmentSelected] = useState(false);
-  const [formValues, setFormValues] = useForm({
-    docType: '',
-    docValue: '',
-    department: departments.at(0)?.id + '',
-  });
+const IdentityForm = ({
+  steps,
+  activeStep,
+  initialFormState,
+  setMainFormValues,
+}) => {
+  const [formValues, setFormValues] = useForm(initialFormState);
   const [disabled, setDisabled] = useState(activeStep !== 0);
+
+  const { docType, docValue, docExpDate, department, city } = formValues;
+
+  const handleInputChange = (event) => {
+    setFormValues(event);
+    setMainFormValues((mainFormState) => ({
+      ...mainFormState,
+      identityForm: {
+        ...formValues,
+        [event.target.name]: event.target.value,
+      },
+    }));
+  };
 
   useEffect(() => {
     setDisabled(activeStep !== 0);
   }, [activeStep]);
-
-  const { docType, docValue, department } = formValues;
 
   return (
     <React.Fragment>
@@ -32,12 +43,12 @@ const IdentityForm = ({ steps, activeStep }) => {
           <Select
             disabled={disabled}
             labelId="demo-simple-select-helper-label"
-            id="idType"
-            name="idType"
-            value={docTypes.at(0)?.name}
+            id="docType"
+            name="docType"
+            value={docType}
             label="Tipo de identificación"
             fullWidth
-            onChange={setFormValues}
+            onChange={handleInputChange}
           >
             {docTypes.map((doc) => (
               <MenuItem key={doc.id} value={doc.name}>
@@ -50,8 +61,10 @@ const IdentityForm = ({ steps, activeStep }) => {
           <TextField
             required
             disabled={disabled}
-            id="idValue"
-            name="idValue"
+            onChange={handleInputChange}
+            value={docValue}
+            id="docValue"
+            name="docValue"
             label="Número de identificación"
             fullWidth
             autoComplete="given-name"
@@ -61,8 +74,10 @@ const IdentityForm = ({ steps, activeStep }) => {
         <Grid item xs={12} sm={2}>
           <TextField
             required
-            id="idExpDate"
-            name="idExpDate"
+            id="docExpDate"
+            name="docExpDate"
+            value={docExpDate}
+            onChange={handleInputChange}
             disabled={disabled}
             label="Fecha de expedición"
             fullWidth
@@ -73,13 +88,13 @@ const IdentityForm = ({ steps, activeStep }) => {
         <Grid item xs={12} sm={3}>
           <Select
             labelId="demo-simple-select-helper-label"
-            id="departament"
+            id="department"
             name="department"
             disabled={disabled}
-            value={departments.at(0)?.id + ''}
+            value={department}
+            onChange={handleInputChange}
             label="Departamento"
             fullWidth
-            onChange={setFormValues}
           >
             {departments.map((dep) => (
               <MenuItem key={dep.id} value={dep.id + ''}>
@@ -90,26 +105,21 @@ const IdentityForm = ({ steps, activeStep }) => {
         </Grid>
         <Grid item xs={12} sm={2}>
           <Select
-            labelId="demo-simple-select-helper-label"
-            id="departament"
-            name="department"
+            id="city"
+            name="city"
             disabled={disabled}
-            value={
-              departments
-                .find((dep) => dep.id + '' === department)
-                ?.regions.at(0)?.id + ''
-            }
+            value={city}
+            onChange={handleInputChange}
             label="Municipio"
             fullWidth
-            onChange={setFormValues}
           >
             {departments
-              .find((dep) => dep.id + '' === department)
+              .find((dep) => `${dep.id}` === department)
               ?.regions.map((reg) => (
-                <MenuItem key={reg.id} value={reg.id + ''}>
+                <MenuItem key={`${reg.id}`} value={`${reg.id}`}>
                   {reg.name}
                 </MenuItem>
-              ))}{' '}
+              ))}
           </Select>
         </Grid>
       </Grid>
@@ -120,6 +130,8 @@ const IdentityForm = ({ steps, activeStep }) => {
 IdentityForm.propTypes = {
   steps: PropTypes.arrayOf(PropTypes.string),
   activeStep: PropTypes.number,
+  initialFormState: PropTypes.object,
+  setMainFormValues: PropTypes.func,
 };
 
 export default IdentityForm;

@@ -10,7 +10,7 @@ import {
   universidades,
 } from '../shared/data/data';
 
-const Form = () => {
+const IngresosForm = () => {
   const [departamentoCedula, setDepartamentoCedula] = useState('depto');
   const [departamentoNacimiento, setDepartamentoNacimiento] = useState('depto');
   const [departamentoResidencia, setDepartamentoResidencia] = useState('depto');
@@ -396,4 +396,4 @@ const Form = () => {
   );
 };
 
-export default Form;
+export default IngresosForm;

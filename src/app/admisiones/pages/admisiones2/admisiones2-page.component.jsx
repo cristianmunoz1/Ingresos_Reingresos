@@ -1,10 +1,10 @@
 import React from 'react';
-import Form from '../../../pages/Form';
+import IngresosForm from '../../../pages/ingresos-form.component';
 
 const AdmisionesPage2 = () => {
   return (
     <React.Fragment>
-      <Form />
+      <IngresosForm />
     </React.Fragment>
   );
 };

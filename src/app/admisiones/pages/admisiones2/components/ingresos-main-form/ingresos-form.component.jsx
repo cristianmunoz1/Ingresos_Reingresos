@@ -8,12 +8,17 @@ import StepLabel from '@mui/material/StepLabel';
 import Stepper from '@mui/material/Stepper';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
-import React from 'react';
+import React, { useState } from 'react';
+import departments from '../../../../../shared/data/departments';
+import docTypes from '../../../../../shared/data/document-types';
+import specialIncomeTypes from '../../../../../shared/data/special-income-types';
+import useForm from '../../../../../shared/hooks/useForm';
+import AcademicInfoForm from '../academic-info-form/academic-info-form.component';
 import AdditionalInfoForm from '../additional-info-form/additional-info-form.component';
-import BornAndResidenceForm from '../born-form/identity-form.component';
+import BornAndResidenceForm from '../born-form/born-form.component';
 import IdentityForm from '../identity-form/identity-form.component';
 import NamesForm from '../names-form/names-form.component';
-import AcademicInfoForm from '../academic-info-form/academic-info-form.component';
+import genderTypes from '../../../../../shared/data/gender-types';
 
 const steps = [
   'Identificación',
@@ -26,7 +31,54 @@ const steps = [
 const theme = createTheme();
 
 const IngresosForm = () => {
-  const [activeStep, setActiveStep] = React.useState(0);
+  const [activeStep, setActiveStep] = useState(0);
+
+  const [formValues, setFormValues] = useState({
+    identityForm: {
+      docType: docTypes[0].name,
+      docValue: '',
+      docExpDate: '',
+      department: departments[0].id + '',
+      city: departments[0].regions[0].id + '',
+    },
+    namesForm: {
+      firstName: '',
+      middleName: '',
+      firstSureName: '',
+      secondSureName: '',
+    },
+    bornAndResidenceForm: {
+      birthday: '',
+      birthDepartment: departments[0].id + '',
+      birthCity: departments[0].regions[0].id + '',
+      residenceDepartment: departments[0].id + '',
+      residenceCity: departments[0].regions[0].id + '',
+    },
+    additionalInfoForm: {
+      gender: genderTypes[0].name + '',
+      specialIncome: false,
+      specialIncomeType: specialIncomeTypes.at(0)?.id,
+      email: '',
+      phonePrefix: '',
+      phoneNumber: '',
+    },
+    academicInfoForm: {
+      incomingType: '',
+    },
+  });
+
+  const {
+    identityForm,
+    namesForm,
+    bornAndResidenceForm,
+    additionalInfoForm,
+    academicInfoForm,
+  } = formValues;
+
+  const registerStudent = (event) => {
+    event.preventDefault();
+    window.alert(JSON.stringify(formValues));
+  };
 
   const handleNext = () => {
     setActiveStep(activeStep + 1);
@@ -44,6 +96,8 @@ const IngresosForm = () => {
           variant="outlined"
           sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}
         >
+          {JSON.stringify(formValues)}
+
           <Stepper activeStep={activeStep} sx={{ pt: 3, pb: 5 }}>
             {steps.map((label) => (
               <Step key={label}>
@@ -64,20 +118,59 @@ const IngresosForm = () => {
             </React.Fragment>
           ) : (
             <React.Fragment>
-              <IdentityForm steps={steps} activeStep={activeStep} />
-              <NamesForm steps={steps} activeStep={activeStep} />
-              <BornAndResidenceForm steps={steps} activeStep={activeStep} />
-              <AdditionalInfoForm steps={steps} activeStep={activeStep} />
-              <AcademicInfoForm steps={steps} activeStep={activeStep} />
+              <IdentityForm
+                initialFormState={identityForm}
+                setMainFormValues={setFormValues}
+                steps={steps}
+                activeStep={activeStep}
+              />
+
+              <NamesForm
+                initialFormState={namesForm}
+                setMainFormValues={setFormValues}
+                steps={steps}
+                activeStep={activeStep}
+              />
+
+              <BornAndResidenceForm
+                initialFormState={bornAndResidenceForm}
+                setMainFormValues={setFormValues}
+                steps={steps}
+                activeStep={activeStep}
+              />
+
+              <AdditionalInfoForm
+                initialFormState={additionalInfoForm}
+                setMainFormValues={setFormValues}
+                steps={steps}
+                activeStep={activeStep}
+              />
+
+              {/* <AcademicInfoForm
+                initialFormState={academicInfoForm}
+                setMainFormValues={setFormValues}
+                steps={steps}
+                activeStep={activeStep}
+              /> */}
+
               <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
                 {activeStep !== 0 && (
-                  <Button onClick={handleBack} sx={{ mt: 3, ml: 1 }}>
+                  <Button
+                    color="success"
+                    onClick={handleBack}
+                    sx={{ mt: 3, ml: 1 }}
+                  >
                     Atrás
                   </Button>
                 )}
                 <Button
                   variant="contained"
-                  onClick={handleNext}
+                  color="success"
+                  onClick={(event) =>
+                    activeStep === steps.length - 1
+                      ? registerStudent(event)
+                      : handleNext(event)
+                  }
                   sx={{ mt: 3, ml: 1 }}
                 >
                   {activeStep === steps.length - 1 ? 'Registrar' : 'Siguiente'}

@@ -18,10 +18,13 @@ import sedes from '../../../../../shared/data/sedes';
 import universities from '../../../../../shared/data/universities';
 import useForm from '../../../../../shared/hooks/useForm';
 
-const AcademicInfoForm = ({ steps, activeStep }) => {
-  const [formValues, setFormValues] = useForm({
-    incomingType: '',
-  });
+const AcademicInfoForm = ({
+  steps,
+  activeStep,
+  initialFormState,
+  setMainFormValues,
+}) => {
+  const [formValues, setFormValues] = useForm({ ...initialFormState });
 
   const { incomingType } = formValues;
 
@@ -195,6 +198,8 @@ const AcademicInfoForm = ({ steps, activeStep }) => {
 AcademicInfoForm.propTypes = {
   steps: PropTypes.arrayOf(PropTypes.string),
   activeStep: PropTypes.number,
+  initialFormState: PropTypes.object,
+  setMainFormValues: PropTypes.func,
 };
 
 export default AcademicInfoForm;

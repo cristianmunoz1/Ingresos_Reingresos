@@ -1,23 +1,31 @@
 import { Divider } from '@mui/material';
-import Checkbox from '@mui/material/Checkbox';
-import FormControlLabel from '@mui/material/FormControlLabel';
 import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
-import departments from '../../../../../shared/data/departments';
 import useForm from '../../../../../shared/hooks/useForm';
 
-const NamesForm = ({ steps, activeStep }) => {
-  const [formValues, setFormValues] = useForm({
-    firstName: '',
-    middleName: '',
-    firstSureName: '',
-    secondSureName: '',
-  });
+const NamesForm = ({
+  steps,
+  activeStep,
+  initialFormState,
+  setMainFormValues,
+}) => {
+  const [formValues, setFormValues] = useForm(initialFormState);
 
   const { firstName, middleName, firstSureName, secondSureName } = formValues;
+
+  const handleInputChange = (event) => {
+    setFormValues(event);
+    setMainFormValues((mainFormState) => ({
+      ...mainFormState,
+      namesForm: {
+        ...formValues,
+        [event.target.name]: event.target.value,
+      },
+    }));
+  };
 
   const [disabled, setDisabled] = useState(activeStep !== 1);
 
@@ -37,7 +45,7 @@ const NamesForm = ({ steps, activeStep }) => {
             id="firstName"
             name="firstName"
             value={firstName}
-            onChange={setFormValues}
+            onChange={handleInputChange}
             label="Primer nombre"
             fullWidth
             variant="outlined"
@@ -49,7 +57,7 @@ const NamesForm = ({ steps, activeStep }) => {
             name="middleName"
             disabled={disabled}
             value={middleName}
-            onChange={setFormValues}
+            onChange={handleInputChange}
             label="Segundo nombre"
             fullWidth
             variant="outlined"
@@ -62,7 +70,7 @@ const NamesForm = ({ steps, activeStep }) => {
             name="firstSureName"
             disabled={disabled}
             value={firstSureName}
-            onChange={setFormValues}
+            onChange={handleInputChange}
             label="Primer apellido"
             fullWidth
             variant="outlined"
@@ -75,7 +83,7 @@ const NamesForm = ({ steps, activeStep }) => {
             name="secondSureName"
             disabled={disabled}
             value={secondSureName}
-            onChange={setFormValues}
+            onChange={handleInputChange}
             label="Segundo apellido"
             fullWidth
             variant="outlined"
@@ -89,6 +97,8 @@ const NamesForm = ({ steps, activeStep }) => {
 NamesForm.propTypes = {
   steps: PropTypes.arrayOf(PropTypes.string),
   activeStep: PropTypes.number,
+  initialFormState: PropTypes.object,
+  setMainFormValues: PropTypes.func,
 };
 
 export default NamesForm;

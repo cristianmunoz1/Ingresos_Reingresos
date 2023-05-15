@@ -7,15 +7,32 @@ import React, { useEffect, useState } from 'react';
 import departments from '../../../../../shared/data/departments';
 import useForm from '../../../../../shared/hooks/useForm';
 
-const BornAndResidenceForm = ({ steps, activeStep }) => {
-  const [isDepartmentSelected, setIsDepartmentSelected] = useState(false);
-  const [formValues, setFormValues] = useForm({
-    docType: '',
-    docValue: '',
-    department: departments.at(0)?.id + '',
-  });
+const BornAndResidenceForm = ({
+  steps,
+  activeStep,
+  initialFormState,
+  setMainFormValues,
+}) => {
+  const [formValues, setFormValues] = useForm(initialFormState);
 
-  const { docType, docValue, department } = formValues;
+  const {
+    birthday,
+    birthDepartment,
+    birthCity,
+    residenceDepartment,
+    residenceCity,
+  } = formValues;
+
+  const handleInputChange = (event) => {
+    setFormValues(event);
+    setMainFormValues((mainFormState) => ({
+      ...mainFormState,
+      bornAndResidenceForm: {
+        ...formValues,
+        [event.target.name]: event.target.value,
+      },
+    }));
+  };
 
   const [disabled, setDisabled] = useState(activeStep !== 2);
 
@@ -31,25 +48,25 @@ const BornAndResidenceForm = ({ steps, activeStep }) => {
         <Grid item xs={12} sm={2}>
           <TextField
             required
-            id="idValue"
+            id="birthday"
             disabled={disabled}
-            name="idValue"
-            label="Número de identificación"
+            name="birthday"
+            label="Fecha de nacimiento"
             fullWidth
-            autoComplete="given-name"
+            value={birthday}
+            onChange={handleInputChange}
             variant="outlined"
           />
         </Grid>
         <Grid item xs={12} sm={3}>
           <Select
-            labelId="demo-simple-select-helper-label"
-            id="departament"
+            id="birthDepartment"
             disabled={disabled}
-            name="department"
-            value={departments.at(0)?.id + ''}
-            label="Departamento"
+            name="birthDepartment"
+            value={birthDepartment}
+            label="Departamento de nacimiento"
             fullWidth
-            onChange={setFormValues}
+            onChange={handleInputChange}
           >
             {departments.map((dep) => (
               <MenuItem key={dep.id} value={dep.id + ''}>
@@ -60,38 +77,32 @@ const BornAndResidenceForm = ({ steps, activeStep }) => {
         </Grid>
         <Grid item xs={12} sm={2}>
           <Select
-            labelId="demo-simple-select-helper-label"
-            id="departament"
+            id="birthCity"
             disabled={disabled}
-            name="department"
-            value={
-              departments
-                .find((dep) => dep.id + '' === department)
-                ?.regions.at(0)?.id + ''
-            }
-            label="Municipio"
+            name="birthCity"
+            value={birthCity}
+            label="Municipio de nacimiento"
             fullWidth
-            onChange={setFormValues}
+            onChange={handleInputChange}
           >
             {departments
-              .find((dep) => dep.id + '' === department)
+              .find((dep) => `${dep.id}` === birthDepartment)
               ?.regions.map((reg) => (
-                <MenuItem key={reg.id} value={reg.id + ''}>
+                <MenuItem key={`${reg.id}`} value={`${reg.id}`}>
                   {reg.name}
                 </MenuItem>
-              ))}{' '}
+              ))}
           </Select>
         </Grid>
         <Grid item xs={12} sm={3}>
           <Select
-            labelId="demo-simple-select-helper-label"
-            id="departament"
+            id="residenceDepartment"
             disabled={disabled}
-            name="department"
-            value={departments.at(0)?.id + ''}
-            label="Departamento"
+            name="residenceDepartment"
+            value={residenceDepartment}
+            label="Departamento de residencia"
             fullWidth
-            onChange={setFormValues}
+            onChange={handleInputChange}
           >
             {departments.map((dep) => (
               <MenuItem key={dep.id} value={dep.id + ''}>
@@ -102,26 +113,21 @@ const BornAndResidenceForm = ({ steps, activeStep }) => {
         </Grid>
         <Grid item xs={12} sm={2}>
           <Select
-            labelId="demo-simple-select-helper-label"
-            id="departament"
+            id="residenceCity"
             disabled={disabled}
-            name="department"
-            value={
-              departments
-                .find((dep) => dep.id + '' === department)
-                ?.regions.at(0)?.id + ''
-            }
-            label="Municipio"
+            name="residenceCity"
+            value={residenceCity}
+            label="Municipio de residencia"
             fullWidth
-            onChange={setFormValues}
+            onChange={handleInputChange}
           >
             {departments
-              .find((dep) => dep.id + '' === department)
+              .find((dep) => `${dep.id}` === residenceDepartment)
               ?.regions.map((reg) => (
-                <MenuItem key={reg.id} value={reg.id + ''}>
+                <MenuItem key={`${reg.id}`} value={`${reg.id}`}>
                   {reg.name}
                 </MenuItem>
-              ))}{' '}
+              ))}
           </Select>
         </Grid>
       </Grid>
@@ -132,6 +138,8 @@ const BornAndResidenceForm = ({ steps, activeStep }) => {
 BornAndResidenceForm.propTypes = {
   steps: PropTypes.arrayOf(PropTypes.string),
   activeStep: PropTypes.number,
+  initialFormState: PropTypes.object,
+  setMainFormValues: PropTypes.func,
 };
 
 export default BornAndResidenceForm;

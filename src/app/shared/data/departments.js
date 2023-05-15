@@ -1,5 +1,4 @@
 //raw.githubusercontent.com/marcovega/colombia-json/master/colombia.json
-
 const departments = [
   {
     id: 0,

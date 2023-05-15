@@ -17,20 +17,46 @@ import specialIncomeTypes from '../../../../../shared/data/special-income-types'
 import phonePrefixes from '../../../../../shared/data/phone-prefixes';
 import disabilityTypes from '../../../../../shared/data/disability-types';
 
-const AdditionalInfoForm = ({ steps, activeStep }) => {
-  const [formValues, setFormValues] = useForm({
-    specialIncome: false,
-    specialIncomeType: specialIncomeTypes.at(0)?.id,
-    email: '',
-    phonePrefix: '',
-    phoneNumber: '',
-  });
-
-  const { specialIncome, specialIncomeType, email, phoneNumber, phonePrefix } =
-    formValues;
-
+const AdditionalInfoForm = ({
+  steps,
+  activeStep,
+  initialFormState,
+  setMainFormValues,
+}) => {
+  const [formValues, setFormValues, handleCheckedChange] =
+    useForm(initialFormState);
   const [disabled, setDisabled] = useState(activeStep !== 3);
 
+  const {
+    gender,
+    specialIncome,
+    specialIncomeType,
+    email,
+    phonePrefix,
+    phoneNumber,
+  } = formValues;
+
+  const handleInputChange = (event) => {
+    setFormValues(event);
+    setMainFormValues((mainFormState) => ({
+      ...mainFormState,
+      additionalInfoForm: {
+        ...formValues,
+        [event.target.name]: event.target.value,
+      },
+    }));
+  };
+
+  const checkedChange = (event) => {
+    handleCheckedChange(event);
+    setMainFormValues((mainFormState) => ({
+      ...mainFormState,
+      additionalInfoForm: {
+        ...formValues,
+        [event.target.name]: event.target.checked,
+      },
+    }));
+  };
   useEffect(() => {
     setDisabled(activeStep !== 3);
   }, [activeStep]);
@@ -43,39 +69,45 @@ const AdditionalInfoForm = ({ steps, activeStep }) => {
         <Grid item xs={12} sm={2}>
           <Select
             labelId="demo-simple-select-helper-label"
-            id="idType"
-            name="idType"
+            id="gender"
+            name="gender"
             disabled={disabled}
-            value={genderTypes.at(0)?.name}
+            value={gender}
             label="Género"
             fullWidth
-            onChange={setFormValues}
+            onChange={handleInputChange}
           >
-            {genderTypes.map((doc) => (
-              <MenuItem key={doc.id} value={doc.name}>
-                {doc.label}
+            {genderTypes.map((gender) => (
+              <MenuItem key={gender.id} value={gender.name}>
+                {gender.label}
               </MenuItem>
             ))}
           </Select>
         </Grid>
         <Grid item xs={12} sm={2}>
           <FormControlLabel
-            value="specialIncome"
-            control={<Checkbox disabled={disabled} />}
+            control={
+              <Checkbox
+                checked={specialIncome}
+                onChange={checkedChange}
+                id="specialIncome"
+                name="specialIncome"
+                disabled={disabled}
+              />
+            }
             label="¿Ingreso especial?"
             labelPlacement="top"
           />
         </Grid>
         <Grid item xs={12} sm={2}>
           <Select
-            labelId="demo-simple-select-helper-label"
-            id="specialIncome"
-            disabled={disabled}
-            name="specialIncome"
-            value={specialIncomeTypes.at(0)?.name}
+            id="specialIncomeType"
+            disabled={disabled || !specialIncome}
+            name="specialIncomeType"
+            value={specialIncomeType}
             label="Ingreso especial"
             fullWidth
-            onChange={setFormValues}
+            onChange={handleInputChange}
           >
             {specialIncomeTypes.map((doc) => (
               <MenuItem key={doc.id} value={doc.name}>
@@ -90,7 +122,7 @@ const AdditionalInfoForm = ({ steps, activeStep }) => {
             name="email"
             disabled={disabled}
             value={email}
-            onChange={setFormValues}
+            onChange={handleInputChange}
             label="Email"
             fullWidth
             variant="outlined"
@@ -105,7 +137,7 @@ const AdditionalInfoForm = ({ steps, activeStep }) => {
             value={phonePrefix}
             label="Prefijo"
             fullWidth
-            onChange={setFormValues}
+            onChange={handleInputChange}
           >
             {phonePrefixes.map((prefix) => (
               <MenuItem key={prefix.code} value={prefix.code}>
@@ -121,14 +153,15 @@ const AdditionalInfoForm = ({ steps, activeStep }) => {
             disabled={disabled}
             name="phoneNumber"
             value={phoneNumber}
-            onChange={setFormValues}
+            onChange={handleInputChange}
             label="Número de celular"
             fullWidth
             variant="outlined"
           />
         </Grid>
       </Grid>
-      <Grid
+
+      {/* <Grid
         container
         flex={true}
         justifyContent={'space-evenly'}
@@ -179,7 +212,7 @@ const AdditionalInfoForm = ({ steps, activeStep }) => {
             labelPlacement="start"
           />
         </Grid>
-      </Grid>
+      </Grid> */}
     </React.Fragment>
   );
 };
@@ -187,6 +220,8 @@ const AdditionalInfoForm = ({ steps, activeStep }) => {
 AdditionalInfoForm.propTypes = {
   steps: PropTypes.arrayOf(PropTypes.string),
   activeStep: PropTypes.number,
+  initialFormState: PropTypes.object,
+  setMainFormValues: PropTypes.func,
 };
 
 export default AdditionalInfoForm;

@@ -4,7 +4,7 @@ const dev = {
 
 const prod = {
   BACKEND_URL:
-    'https://82fb-2800-e2-bd80-89a-81f4-c527-3d3e-f9e4.ngrok-free.app/api/v1',
+    'https://a050-2800-e2-bd80-89a-8a17-ed8f-7119-a4ac.ngrok-free.app/api/v1',
 };
 
 export default prod;
