@@ -19,6 +19,7 @@ import BornAndResidenceForm from '../born-form/born-form.component';
 import IdentityForm from '../identity-form/identity-form.component';
 import NamesForm from '../names-form/names-form.component';
 import genderTypes from '../../../../../shared/data/gender-types';
+import disabilityTypes from '../../../../../shared/data/disability-types';
 
 const steps = [
   'Identificación',
@@ -61,6 +62,9 @@ const IngresosForm = () => {
       email: '',
       phonePrefix: '',
       phoneNumber: '',
+      disability: false,
+      disabilityType: disabilityTypes[0].name,
+      diploma: undefined,
     },
     academicInfoForm: {
       incomingType: '',

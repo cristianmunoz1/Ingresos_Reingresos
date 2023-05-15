@@ -23,6 +23,7 @@ const AdditionalInfoForm = ({
   initialFormState,
   setMainFormValues,
 }) => {
+  const [file, setFile] = useState(null);
   const [formValues, setFormValues, handleCheckedChange] =
     useForm(initialFormState);
   const [disabled, setDisabled] = useState(activeStep !== 3);
@@ -34,6 +35,9 @@ const AdditionalInfoForm = ({
     email,
     phonePrefix,
     phoneNumber,
+    disability,
+    disabilityType,
+    diploma,
   } = formValues;
 
   const handleInputChange = (event) => {
@@ -57,6 +61,19 @@ const AdditionalInfoForm = ({
       },
     }));
   };
+
+  const handleUploadFile = (e) => {
+    const file = e.target.files[0];
+    const event = {
+      target: {
+        name: e.target.name,
+        value: 'File uploaded',
+      },
+    };
+    handleInputChange(event);
+    setFile(file);
+  };
+
   useEffect(() => {
     setDisabled(activeStep !== 3);
   }, [activeStep]);
@@ -161,7 +178,7 @@ const AdditionalInfoForm = ({
         </Grid>
       </Grid>
 
-      {/* <Grid
+      <Grid
         container
         flex={true}
         justifyContent={'space-evenly'}
@@ -170,22 +187,29 @@ const AdditionalInfoForm = ({
       >
         <Grid item xs={12} sm={3}>
           <FormControlLabel
-            value="specialIncome"
-            control={<Checkbox disabled={disabled} />}
+            value="disability"
+            control={
+              <Checkbox
+                checked={disability}
+                onChange={checkedChange}
+                id="disability"
+                name="disability"
+                disabled={disabled}
+              />
+            }
             label="¿Presenta alguna discapacidad?"
             labelPlacement="top"
           />
         </Grid>
         <Grid item xs={12} sm={4}>
           <Select
-            labelId="demo-simple-select-helper-label"
-            id="Discapacidad"
+            id="disabilityType"
+            name="disabilityType"
             disabled={disabled}
-            name="Discapacidad"
-            value={disabilityTypes.at(0)?.name}
+            value={disabilityType}
             label="Discapacidad"
             fullWidth
-            onChange={setFormValues}
+            onChange={handleInputChange}
           >
             {disabilityTypes.map((disability) => (
               <MenuItem key={disability.id} value={disability.name}>
@@ -196,7 +220,7 @@ const AdditionalInfoForm = ({
         </Grid>
         <Grid item xs={12} sm={3}>
           <FormControlLabel
-            value="specialIncome"
+            value="diploma"
             control={
               <Button
                 variant="contained"
@@ -205,14 +229,21 @@ const AdditionalInfoForm = ({
                 disabled={disabled}
               >
                 Subir archivo
-                <input disabled={disabled} type="file" hidden />
+                <input
+                  id="diploma"
+                  name="diploma"
+                  onChange={handleUploadFile}
+                  disabled={disabled}
+                  type="file"
+                  hidden
+                />
               </Button>
             }
             label="Subir acta de bachiller"
             labelPlacement="start"
           />
         </Grid>
-      </Grid> */}
+      </Grid>
     </React.Fragment>
   );
 };
