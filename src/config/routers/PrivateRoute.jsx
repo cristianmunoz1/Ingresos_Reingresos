@@ -20,7 +20,10 @@ const PrivateRoute = ({ allRequiredRoles = [], anyRequiredRole = [] }) => {
         message: `${errorMessage} ❌`,
         timeout: 3500,
       });
-      setTimeout(() => dispatch(removeUIError()), 3500);
+      const timeout = setTimeout(() => dispatch(removeUIError()), 3500);
+      return () => {
+        clearTimeout(timeout);
+      };
     }
   }, []);
 

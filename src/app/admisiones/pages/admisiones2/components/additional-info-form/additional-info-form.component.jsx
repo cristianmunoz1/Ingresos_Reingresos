@@ -254,6 +254,7 @@ const AdditionalInfoForm = ({
             label="Subir acta de bachiller"
             labelPlacement="start"
           />
+          {uploadedFile && <h5>Archivo cargado ✅</h5>}
         </Grid>
       </Grid>
       {uploadedFile && (
