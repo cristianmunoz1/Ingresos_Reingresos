@@ -28,7 +28,7 @@ const SideBarItems = () => {
         <ListItemIcon>
           <MenuBookIcon />
         </ListItemIcon>
-        <ListItemText primary="Titulo 1" />
+        <ListItemText primary="" />
       </ListItemButton>
 
       <ListItemButton
@@ -55,7 +55,7 @@ const SideBarItems = () => {
         <ListItemIcon>
           <MenuBookIcon />
         </ListItemIcon>
-        <ListItemText primary="Totulo 4" />
+        <ListItemText primary="Titulo 4" />
       </ListItemButton>
 
       {roles.includes(ADMIN_ROLE) && (
