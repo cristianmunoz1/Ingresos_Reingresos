@@ -16,14 +16,18 @@ import useForm from '../../../../../shared/hooks/useForm';
 import specialIncomeTypes from '../../../../../shared/data/special-income-types';
 import phonePrefixes from '../../../../../shared/data/phone-prefixes';
 import disabilityTypes from '../../../../../shared/data/disability-types';
+import { uploadFileToCloudinary } from '../../../../api/cloudinary.api';
+import SnackbarAlert from '../../../../../shared/components/snackbar-alert/snackbar-alert.component';
 
 const AdditionalInfoForm = ({
   steps,
   activeStep,
   initialFormState,
   setMainFormValues,
+  docValue,
 }) => {
-  const [file, setFile] = useState(null);
+  const [uploadedFile, setUploadedFile] = useState();
+  const [displayAlarm, setDisplayAlarm] = useState(false);
   const [formValues, setFormValues, handleCheckedChange] =
     useForm(initialFormState);
   const [disabled, setDisabled] = useState(activeStep !== 3);
@@ -37,7 +41,7 @@ const AdditionalInfoForm = ({
     phoneNumber,
     disability,
     disabilityType,
-    diploma,
+    // diploma,
   } = formValues;
 
   const handleInputChange = (event) => {
@@ -62,21 +66,29 @@ const AdditionalInfoForm = ({
     }));
   };
 
-  const handleUploadFile = (e) => {
+  const handleUploadFile = async (e) => {
     const file = e.target.files[0];
+    const response = await uploadFileToCloudinary(
+      file,
+      `/admisiones/diplomas/${docValue}`
+    );
+    setUploadedFile(response);
     const event = {
       target: {
         name: e.target.name,
-        value: 'File uploaded',
+        value: JSON.stringify(response),
       },
     };
     handleInputChange(event);
-    setFile(file);
   };
 
   useEffect(() => {
     setDisabled(activeStep !== 3);
   }, [activeStep]);
+
+  useEffect(() => {
+    setDisplayAlarm(true);
+  }, [uploadedFile]);
 
   return (
     <React.Fragment>
@@ -244,6 +256,14 @@ const AdditionalInfoForm = ({
           />
         </Grid>
       </Grid>
+      {uploadedFile && (
+        <SnackbarAlert
+          message={`El archivo ${uploadedFile.original_filename}.${uploadedFile.format} se ha subido correctamente. ✅`}
+          timeout={5000}
+          open={displayAlarm}
+          setOpen={setDisplayAlarm}
+        />
+      )}
     </React.Fragment>
   );
 };
@@ -251,6 +271,7 @@ const AdditionalInfoForm = ({
 AdditionalInfoForm.propTypes = {
   steps: PropTypes.arrayOf(PropTypes.string),
   activeStep: PropTypes.number,
+  docValue: PropTypes.string,
   initialFormState: PropTypes.object,
   setMainFormValues: PropTypes.func,
 };

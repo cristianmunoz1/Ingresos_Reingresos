@@ -20,7 +20,14 @@ import IdentityForm from '../identity-form/identity-form.component';
 import NamesForm from '../names-form/names-form.component';
 import genderTypes from '../../../../../shared/data/gender-types';
 import disabilityTypes from '../../../../../shared/data/disability-types';
-
+import incomingTypes from '../../../../../shared/data/incoming-types';
+import careers from '../../../../../shared/data/courses';
+import sedes from '../../../../../shared/data/sedes';
+import modalities from '../../../../../shared/data/modalidad';
+import universities from '../../../../../shared/data/universities';
+import { useDispatch, useSelector } from 'react-redux';
+import { registerStudentAction } from '../../../../api/admisiones.api';
+import RequestLoading from '../../../../../shared/components/request-loading/request-loading.component';
 const steps = [
   'Identificación',
   'Nombres y apellidos',
@@ -32,6 +39,7 @@ const steps = [
 const theme = createTheme();
 
 const IngresosForm = () => {
+  const dispatch = useDispatch();
   const [activeStep, setActiveStep] = useState(0);
 
   const [formValues, setFormValues] = useState({
@@ -67,7 +75,11 @@ const IngresosForm = () => {
       diploma: undefined,
     },
     academicInfoForm: {
-      incomingType: '',
+      incomingType: incomingTypes[0].name,
+      career: careers[0].name,
+      sede: sedes[0].name,
+      modality: modalities[0].name,
+      universityOfOrigin: universities[0].name,
     },
   });
 
@@ -81,7 +93,7 @@ const IngresosForm = () => {
 
   const registerStudent = (event) => {
     event.preventDefault();
-    window.alert(JSON.stringify(formValues));
+    dispatch(registerStudentAction(formValues));
   };
 
   const handleNext = () => {
@@ -100,8 +112,7 @@ const IngresosForm = () => {
           variant="outlined"
           sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}
         >
-          {JSON.stringify(formValues)}
-
+          {/* {JSON.stringify(formValues)} */}
           <Stepper activeStep={activeStep} sx={{ pt: 3, pb: 5 }}>
             {steps.map((label) => (
               <Step key={label}>
@@ -148,14 +159,15 @@ const IngresosForm = () => {
                 setMainFormValues={setFormValues}
                 steps={steps}
                 activeStep={activeStep}
+                docValue={identityForm.docValue}
               />
 
-              {/* <AcademicInfoForm
+              <AcademicInfoForm
                 initialFormState={academicInfoForm}
                 setMainFormValues={setFormValues}
                 steps={steps}
                 activeStep={activeStep}
-              /> */}
+              />
 
               <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
                 {activeStep !== 0 && (

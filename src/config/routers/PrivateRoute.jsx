@@ -1,12 +1,28 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Navigate, Outlet } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { removeUIError } from '../../app/shared/redux/actions/shared.actions';
+import SnackbarAlert from '../../app/shared/components/snackbar-alert/snackbar-alert.component';
 
 const PrivateRoute = ({ allRequiredRoles = [], anyRequiredRole = [] }) => {
   const auth = useSelector((state) => state.authentication);
+  const dispatch = useDispatch();
+  const [displaySnackbarAlarm, setDisplaySnackbarAlarm] = useState();
+  const { error } = useSelector((state) => state.shared);
+  const { state: errorState, message: errorMessage } = error;
 
   const { roles = [] } = auth;
+
+  useEffect(() => {
+    if (errorState) {
+      setDisplaySnackbarAlarm({
+        message: `${errorMessage} ❌`,
+        timeout: 3500,
+      });
+      setTimeout(() => dispatch(removeUIError()), 3500);
+    }
+  }, []);
 
   const verifyUserHasAllRoles = (roles, allRequiredRoles) => {
     return allRequiredRoles.every((requiredRole) =>
@@ -58,6 +74,7 @@ const PrivateRoute = ({ allRequiredRoles = [], anyRequiredRole = [] }) => {
   return (
     <React.Fragment>
       <Outlet />
+      {displaySnackbarAlarm && <SnackbarAlert {...displaySnackbarAlarm} />}
     </React.Fragment>
   );
 };

@@ -40,7 +40,7 @@ const AppRouter = () => {
 
   const { loading } = useSelector((state) => state.shared);
 
-  const { loading: loadingState, loading: loadingMessage } = loading;
+  const { state: loadingState, message: loadingMessage } = loading;
 
   useEffect(() => {
     if (errorState) {

@@ -1,4 +1,4 @@
-const courses = [
+const careers = [
   { id: 1, name: 'ING_SISTEMAS', label: 'Ingeniería de Sistemas' },
   {
     id: 2,
@@ -7,4 +7,4 @@ const courses = [
   },
 ];
 
-export default courses;
+export default careers;
