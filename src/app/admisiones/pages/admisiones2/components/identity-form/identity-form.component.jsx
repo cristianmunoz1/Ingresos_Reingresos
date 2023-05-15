@@ -8,6 +8,7 @@ import departments from '../../../../../shared/data/departments';
 import docTypes from '../../../../../shared/data/document-types';
 import useForm from '../../../../../shared/hooks/useForm';
 
+
 const IdentityForm = ({
   steps,
   activeStep,
@@ -83,7 +84,8 @@ const IdentityForm = ({
             fullWidth
             autoComplete="family-name"
             variant="outlined"
-          />
+          /> 
+        
         </Grid>
         <Grid item xs={12} sm={3}>
           <Select
