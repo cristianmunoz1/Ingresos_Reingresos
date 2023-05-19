@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Boton from '../components/Boton';
-import Header from '../components/Header';
 import {
   departamentos,
   municipios,
@@ -70,12 +69,12 @@ const IngresosForm = () => {
                   {departamentoCedula === 'depto'
                     ? null
                     : municipios[departamentoCedula].map((municipio, index) => {
-                        return (
-                          <option key={index} value={municipio}>
-                            {municipio}
-                          </option>
-                        );
-                      })}
+                      return (
+                        <option key={index} value={municipio}>
+                          {municipio}
+                        </option>
+                      );
+                    })}
                 </select>
               </div>
             </label>
@@ -139,14 +138,14 @@ const IngresosForm = () => {
                   {departamentoNacimiento === 'depto'
                     ? null
                     : municipios[departamentoNacimiento].map(
-                        (municipio, index) => {
-                          return (
-                            <option key={index} value={municipio}>
-                              {municipio}
-                            </option>
-                          );
-                        }
-                      )}
+                      (municipio, index) => {
+                        return (
+                          <option key={index} value={municipio}>
+                            {municipio}
+                          </option>
+                        );
+                      }
+                    )}
                 </select>
               </div>
             </label>
@@ -180,14 +179,14 @@ const IngresosForm = () => {
                   {departamentoResidencia === 'depto'
                     ? null
                     : municipios[departamentoResidencia].map(
-                        (municipio, index) => {
-                          return (
-                            <option key={index} value={municipio}>
-                              {municipio}
-                            </option>
-                          );
-                        }
-                      )}
+                      (municipio, index) => {
+                        return (
+                          <option key={index} value={municipio}>
+                            {municipio}
+                          </option>
+                        );
+                      }
+                    )}
                 </select>
               </div>
             </label>

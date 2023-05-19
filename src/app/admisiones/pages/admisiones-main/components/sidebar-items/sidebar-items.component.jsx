@@ -52,7 +52,7 @@ const SideBarItems = () => {
         <ListItemText primary="Tabla" />
       </ListItemButton>
 
-      
+
 
       {roles.includes(ADMIN_ROLE) && (
         <React.Fragment>
