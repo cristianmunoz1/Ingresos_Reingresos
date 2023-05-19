@@ -88,7 +88,7 @@ const AdmisionesMainPage = () => {
 
   return (
     <ThemeProvider theme={mdTheme}>
-      <Box sx={{ display: 'flex' }}>
+      <Box sx={{ display: 'flex', marginBottom: '20px' }}>
         <CssBaseline />
         <AppBar position="absolute" open={open}>
           <Toolbar
@@ -166,7 +166,7 @@ const AdmisionesMainPage = () => {
           <Outlet />
         </Box>
       </Box>
-    </ThemeProvider>
+    </ThemeProvider >
   );
 };
 

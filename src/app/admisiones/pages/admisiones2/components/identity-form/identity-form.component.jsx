@@ -7,6 +7,8 @@ import React, { useEffect, useState } from 'react';
 import departments from '../../../../../shared/data/departments';
 import docTypes from '../../../../../shared/data/document-types';
 import useForm from '../../../../../shared/hooks/useForm';
+import { DateField, DatePicker } from '@mui/x-date-pickers';
+
 
 const IdentityForm = ({
   steps,
@@ -71,7 +73,7 @@ const IdentityForm = ({
             variant="outlined"
           />
         </Grid>
-        <Grid item xs={12} sm={2}>
+        <Grid item xs={12} sm={3}>
           <TextField
             required
             id="docExpDate"
@@ -79,13 +81,12 @@ const IdentityForm = ({
             value={docExpDate}
             onChange={handleInputChange}
             disabled={disabled}
-            label="Fecha de expedición"
             fullWidth
-            autoComplete="family-name"
+            label="Fecha de expedición"
             variant="outlined"
           />
         </Grid>
-        <Grid item xs={12} sm={3}>
+        <Grid item xs={12} sm={2}>
           <Select
             labelId="demo-simple-select-helper-label"
             id="department"

@@ -8,12 +8,18 @@ import Boton from '../components/Boton';
 import Header from '../components/Header';
 import Tabla from '../components/Tabla';
 import React from 'react';
+import { height } from '@mui/system';
 
 library.add(fas, faTwitter, faFontAwesome);
 
 const ListadoAd = () => {
+
+  const espacioEstilos = {
+    height: "50px"
+  }
   return (
     <React.Fragment>
+      <div style={espacioEstilos}></div>
       <div className="listado-admisiones">
         <div className="contenedor-busqueda">
           <Button variant="light">

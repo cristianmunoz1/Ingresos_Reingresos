@@ -8,6 +8,8 @@ import { loginAction } from '../redux/actions/auth.actions';
 import * as axiosAdapter from './adapters/axios/auth-axios.adapter';
 import * as jwtAdapter from './adapters/jwt/auth-jwt.adapter';
 
+
+
 export const login = (username, password) => {
   return async (dispatch) => {
     // eslint-disable-next-line quotes

@@ -6,7 +6,7 @@ import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import PropTypes from 'prop-types';
 
-const ModalIngresoPuntaje = ({ text }) => {
+const ModalIngresoPuntaje = ({ text, name }) => {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -18,7 +18,7 @@ const ModalIngresoPuntaje = ({ text }) => {
         {text}
       </Button>
 
-      <Modal show={show} onHide={handleClose}>
+      <Modal show={show} onHide={handleClose} centered>
         <Form>
           <Modal.Header closeButton>
             <Modal.Title>Ingresar puntaje al admitido</Modal.Title>
