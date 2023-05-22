@@ -163,6 +163,11 @@ const AdmisionesMainPage = () => {
             marginTop: '33px',
           }}
         >
+          <img
+            src={'/static/img/logo/logosimbolo-horizontal-blanco.png'}
+            width={150}
+            alt="logo"
+          />
           <Outlet />
         </Box>
       </Box>

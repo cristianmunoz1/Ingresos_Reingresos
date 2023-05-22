@@ -31,7 +31,7 @@ const ModalIngresoPuntaje = ({ text, name }) => {
                   controlId="exampleForm.ControlInput1"
                 >
                   <Form.Label className="labelIdentificacion">
-                    Identificación:
+                    Identificación
                   </Form.Label>
                   <br />
                   <Form.Text>{text}</Form.Text>
@@ -55,7 +55,7 @@ const ModalIngresoPuntaje = ({ text, name }) => {
                   controlId="exampleForm.ControlInput1"
                 >
                   <Form.Label className="labelIdentificacion">
-                    Puntaje:
+                    Puntaje
                   </Form.Label>
                   <br />
                   <Form.Text>(0-100)</Form.Text>

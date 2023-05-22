@@ -8,6 +8,7 @@ import {
   Select,
 } from '@mui/material';
 import Grid from '@mui/material/Grid';
+import specialIncomeTypes from '../../../../../shared/data/special-income-types';
 import Typography from '@mui/material/Typography';
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
@@ -17,6 +18,9 @@ import modalities from '../../../../../shared/data/modalidad';
 import sedes from '../../../../../shared/data/sedes';
 import universities from '../../../../../shared/data/universities';
 import useForm from '../../../../../shared/hooks/useForm';
+
+
+
 
 const AcademicInfoForm = ({
   steps,
@@ -30,6 +34,11 @@ const AcademicInfoForm = ({
     formValues;
 
   const [disabled, setDisabled] = useState(activeStep !== 4);
+
+  const {
+    specialIncome,
+    specialIncomeType,
+  } = formValues;
 
   const handleInputChange = (event) => {
     setFormValues(event);
@@ -130,6 +139,7 @@ const AcademicInfoForm = ({
         </Grid>
       )}
 
+
       {incomingType === 'INGRESO_TRANSFERENCIA' && (
         <Grid container flex={true} spacing={1} mb={3}>
           <Grid item xs={12} sm={3}>
@@ -196,6 +206,28 @@ const AcademicInfoForm = ({
               {modalities.map((modalidad) => (
                 <MenuItem key={modalidad.id} value={modalidad.name}>
                   {modalidad.label}
+                </MenuItem>
+              ))}
+            </Select>
+          </Grid>
+        </Grid>
+      )}
+
+      {incomingType === 'INGRESO_ESPECIAL' && (
+        <Grid container flex={true} spacing={1} mb={3}>
+          <Grid item xs={12} sm={4}>
+            <Select
+              id="specialIncomeType"
+              disabled={disabled}
+              name="specialIncomeType"
+              value={specialIncomeType}
+              label="Ingreso especial"
+              fullWidth
+              onChange={handleInputChange}
+            >
+              {specialIncomeTypes.map((doc) => (
+                <MenuItem key={doc.id} value={doc.name}>
+                  {doc.label}
                 </MenuItem>
               ))}
             </Select>
