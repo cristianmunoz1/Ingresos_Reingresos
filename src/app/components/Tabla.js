@@ -34,7 +34,7 @@ const Tabla = () => {
     results = users;
   }else{
     results = users.filter((dato) => 
-    dato.name.toLowerCase().includes(search.toLocaleLowerCase()))
+    dato.id.toString().toLowerCase().includes(search.toLocaleLowerCase()))
   }
 
   return (
