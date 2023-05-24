@@ -2,38 +2,23 @@ import React from 'react';
 import './styles/Tabla.css';
 import ModalIngresoPuntaje from './Modal';
 import { useState, useEffect } from 'react';
+import applicants from '../shared/data/applicants';
 
 
 const Tabla = () => {
-
-  const [ users, setUsers ] = useState([])
+  
   const [ search, setSearch ] = useState("")
-
-  const URL = "https://jsonplaceholder.typicode.com/users";
-
-  const showData = async () => {
-    const response = await fetch(URL);
-    const data = await response.json();
-
-    setUsers(data)
-  }
-
-
-  useEffect(()=> {
-    showData();
-  }, [])
   
 
   const searcher = (e) => {
     setSearch(e.target.value)
-    console.log(e.target.value)
   }
 
   let results = []
   if(!search){
-    results = users;
+    results = applicants;
   }else{
-    results = users.filter((dato) => 
+    results = applicants.filter((dato) => 
     dato.id.toString().toLowerCase().includes(search.toLocaleLowerCase()))
   }
 
@@ -61,10 +46,10 @@ const Tabla = () => {
             <tr>
               <td><ModalIngresoPuntaje text={users.id} name = {users.name}></ModalIngresoPuntaje></td>
               <td>{users.name}</td>
-              <td>{users.address.zipcode}</td>
-              <td>{users.address.street}</td>
-              <td>{users.address.city}</td>
-              <td>{users.email}</td>
+              <td>{users.programa.idPrograma}</td>
+              <td>{users.programa.programName}</td>
+              <td>{users.sede}</td>
+              <td>{users.modalidad}</td>
             </tr>
           )) }
         </tbody>
