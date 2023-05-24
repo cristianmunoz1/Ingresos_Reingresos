@@ -86,7 +86,7 @@ const DocumentationAdminPage = () => {
     };
     return (
         <ThemeProvider theme={mdTheme}>
-            <Box sx={{ display: 'flex', marginBottom: '20px' }}>
+            <Box sx={{ display: 'flex', marginBottom: '20px', marginTop: '30px' }}>
                 <CssBaseline />
                 <AppBar position="absolute" open={open}>
                     <Toolbar
@@ -166,9 +166,26 @@ const DocumentationAdminPage = () => {
                         width={150}
                         alt="logo"
                     />
+                    <div className='contenedor-documentacion'>
+                        <div class="stackedit__html"><h1 id="introducción">Introducción</h1>
+                            <p>El presente proyecto, está enfocado en el módulo de ingresos y reingresos de la Universidad de Antioquia. En el programa se podrá gestionar el ingreso de estudiantes, asignándoles un puntaje y activándolos en el sistema. Por otro lado, el aspirante tiene la posibilidad de registrar su información y esperar hasta que admisiones y registro active su perfil en el sistema.</p>
+                            <h1 id="login">Login</h1>
+                            <p>El sistema cuenta con un login, en el cual, se podrán registrar las personas que lo deseen. Desde el manejo directo con la base de datos se le asigna un rol en específico para que este pueda hacer correcto uso de la plataforma. El sistema cuenta con un link de verificación al correo electrónico que llega momentos después de realizar el primer registro en la plataforma.</p>
+                            <h1 id="roles">Roles</h1>
+                            <p>En el sistema se podrá contar con 3 roles diferentes, los cuales son:</p>
+                            <ol>
+                                <li>Aspirante</li>
+                                <li>Funcionario de admisiones y registro</li>
+                                <li>Administrador del sistema</li>
+                            </ol>
+                        </div>
+                    </div>
                     <Outlet />
+
                 </Box>
+
             </Box>
+
         </ThemeProvider >
     );
 };
