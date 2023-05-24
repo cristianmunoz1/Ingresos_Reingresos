@@ -14,25 +14,9 @@ library.add(fas, faTwitter, faFontAwesome);
 
 const ListadoAd = () => {
 
-  const espacioEstilos = {
-    height: "50px"
-  }
   return (
     <React.Fragment>
-      <div style={espacioEstilos}></div>
       <div className="listado-admisiones">
-        <div className="contenedor-busqueda">
-          <Button variant="light">
-            <FontAwesomeIcon icon="fa-solid fa-arrow-down-wide-short" />
-          </Button>
-          <Button variant="light">
-            <FontAwesomeIcon icon="fa-solid fa-filter" />
-          </Button>
-          <input type="text" placeholder="Número de identificación"></input>
-          <Button variant="light">
-            <FontAwesomeIcon icon="fa-solid fa-magnifying-glass" />
-          </Button>
-        </div>
         <div className="contenedor-tabla">
           <Tabla></Tabla>
         </div>

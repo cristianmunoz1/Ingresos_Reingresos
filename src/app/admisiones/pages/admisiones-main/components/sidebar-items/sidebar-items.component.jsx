@@ -31,7 +31,7 @@ const SideBarItems = () => {
         <ListItemIcon>
           <MenuBookIcon />
         </ListItemIcon>
-        <ListItemText primary="Formulario " />
+        <ListItemText primary="Formulario v1" />
       </ListItemButton>
 
       <ListItemButton
@@ -40,7 +40,7 @@ const SideBarItems = () => {
         <ListItemIcon>
           <MenuBookIcon />
         </ListItemIcon>
-        <ListItemText primary="Formulario v1" />
+        <ListItemText primary="Formulario v2" />
       </ListItemButton>
 
       <ListItemButton
@@ -49,7 +49,16 @@ const SideBarItems = () => {
         <ListItemIcon>
           <MenuBookIcon />
         </ListItemIcon>
-        <ListItemText primary="Tabla" />
+        <ListItemText primary="Listado de admitidos" />
+      </ListItemButton>
+
+      <ListItemButton
+        onClick={(e) => handleNavigate(e, '/home/admisiones/documentation')}
+      >
+        <ListItemIcon>
+          <MenuBookIcon />
+        </ListItemIcon>
+        <ListItemText primary="Documentación" />
       </ListItemButton>
 
 

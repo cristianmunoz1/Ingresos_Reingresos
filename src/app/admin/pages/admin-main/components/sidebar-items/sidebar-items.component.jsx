@@ -45,14 +45,14 @@ const SideBarStandardsItems = () => {
         <ListItemText primary="Titulo 3" />
       </ListItemButton>
 
-      {/* <ListItemButton
+      <ListItemButton
         onClick={(e) => handleNavigate(e, '/admin/admin1/admin13')}
       >
         <ListItemIcon>
           <MenuBookIcon />
         </ListItemIcon>
         <ListItemText primary="Titulo 4" />
-      </ListItemButton> */}
+      </ListItemButton>
 
       <ListSubheader component="div" inset>
         Admisiones
@@ -63,6 +63,14 @@ const SideBarStandardsItems = () => {
           <MenuBookIcon />
         </ListItemIcon>
         <ListItemText primary="Estudiantes" />
+      </ListItemButton>
+      <ListItemButton
+        onClick={(e) => handleNavigate(e, '/admin/documentation')}
+      >
+        <ListItemIcon>
+          <MenuBookIcon />
+        </ListItemIcon>
+        <ListItemText primary="Documentación" />
       </ListItemButton>
     </React.Fragment>
   );
