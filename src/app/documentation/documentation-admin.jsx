@@ -89,12 +89,18 @@ const DocumentationAdminPage = () => {
             <Box sx={{ display: 'flex', marginBottom: '20px', marginTop: '30px' }}>
                 <CssBaseline />
                 <AppBar position="absolute" open={open}>
+
                     <Toolbar
                         sx={{
                             pr: '24px', // keep right padding when drawer closed
                             backgroundColor: '#7ABA7E',
                         }}
                     >
+                        <img
+                            src={'/static/img/logo/logosimbolo-horizontal-blanco.png'}
+                            width={150}
+                            alt="logo"
+                        />
                         <IconButton
                             edge="start"
                             color="inherit"
@@ -107,6 +113,7 @@ const DocumentationAdminPage = () => {
                         >
                             <MenuIcon />
                         </IconButton>
+
                         <Typography
                             component="h1"
                             variant="h6"
@@ -159,15 +166,12 @@ const DocumentationAdminPage = () => {
                         height: '100vh',
                         overflow: 'auto',
                         marginTop: '33px',
+                        padding: '25px',
                     }}
                 >
-                    <img
-                        src={'/static/img/logo/logosimbolo-horizontal-blanco.png'}
-                        width={150}
-                        alt="logo"
-                    />
+
                     <div className='contenedor-documentacion'>
-                        <div class="stackedit__html"><h1 id="introducción">Introducción</h1>
+                        <div className="stackedit__html"><h1 id="introducción">Introducción</h1>
                             <p>El presente proyecto, está enfocado en el módulo de ingresos y reingresos de la Universidad de Antioquia. En el programa se podrá gestionar el ingreso de estudiantes, asignándoles un puntaje y activándolos en el sistema. Por otro lado, el aspirante tiene la posibilidad de registrar su información y esperar hasta que admisiones y registro active su perfil en el sistema.</p>
                             <h1 id="login">Login</h1>
                             <p>El sistema cuenta con un login, en el cual, se podrán registrar las personas que lo deseen. Desde el manejo directo con la base de datos se le asigna un rol en específico para que este pueda hacer correcto uso de la plataforma. El sistema cuenta con un link de verificación al correo electrónico que llega momentos después de realizar el primer registro en la plataforma.</p>

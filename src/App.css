@@ -61,6 +61,7 @@ h1 {
   margin: 30px;
   justify-content: space-between;
 }
+
 .fila-tipoingreso {
   display: flex;
   margin: 30px;
@@ -92,6 +93,7 @@ hr {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-top: 50px;
 }
 
 .contenedor-botones-listado {
@@ -200,4 +202,8 @@ fieldset {
   flex-direction: row;
   gap: 10px;
   flex-wrap: wrap;
+}
+
+.contenedor-documentacion {
+  padding: 25px;
 }

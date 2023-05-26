@@ -77,7 +77,7 @@ const AppRouter = () => {
           }
         >
           <Route path="admisiones" element={<AdmisionesMainPage />}>
-            <Route path="" element={<AdmisionesPage1 />} />
+            <Route path="" element={<AdmisionesPage3 />} />
             <Route path="page2" element={<AdmisionesPage2 />} />
             <Route path="page222" element={<AdmisionesPage222 />} />
             <Route path="page3" element={<AdmisionesPage3 />} />

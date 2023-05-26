@@ -97,6 +97,11 @@ const AdmisionesMainPage = () => {
               backgroundColor: '#7ABA7E',
             }}
           >
+            <img
+              src={'/static/img/logo/logosimbolo-horizontal-blanco.png'}
+              width={150}
+              alt="logo"
+            />
             <IconButton
               edge="start"
               color="inherit"
@@ -163,11 +168,6 @@ const AdmisionesMainPage = () => {
             marginTop: '33px',
           }}
         >
-          <img
-            src={'/static/img/logo/logosimbolo-horizontal-blanco.png'}
-            width={150}
-            alt="logo"
-          />
           <Outlet />
         </Box>
       </Box>
