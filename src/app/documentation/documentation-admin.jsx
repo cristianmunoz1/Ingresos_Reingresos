@@ -171,11 +171,56 @@ const DocumentationAdminPage = () => {
                 >
 
                     <div className='contenedor-documentacion'>
-                        <div className="stackedit__html"><h1 id="introducción">Introducción</h1>
-                            <p>El presente proyecto, está enfocado en el módulo de ingresos y reingresos de la Universidad de Antioquia. En el programa se podrá gestionar el ingreso de estudiantes, asignándoles un puntaje y activándolos en el sistema. Por otro lado, el aspirante tiene la posibilidad de registrar su información y esperar hasta que admisiones y registro active su perfil en el sistema.</p>
-                            <h1 id="login">Login</h1>
-                            <p>El sistema cuenta con un login, en el cual, se podrán registrar las personas que lo deseen. Desde el manejo directo con la base de datos se le asigna un rol en específico para que este pueda hacer correcto uso de la plataforma. El sistema cuenta con un link de verificación al correo electrónico que llega momentos después de realizar el primer registro en la plataforma.</p>
-                            <h1 id="roles">Roles</h1>
+
+
+                        <div className="stackedit__html">
+                            <h1 id="ingresos-y-reingresos-udea-frontend">
+                                Ingresos y reingresos UdeA (FrontEnd)
+                            </h1>
+                            <h2 id="introducción">Introducción</h2>
+                            <p>
+                                El presente proyecto, está enfocado en el módulo de ingresos y reingresos de
+                                la Universidad de Antioquia.
+                            </p>
+                            <h2 id="descripción">Descripción</h2>
+                            <p>
+                                En el programa se podrá gestionar el ingreso de estudiantes, asignándoles un
+                                puntaje y activándolos en el sistema. Por otro lado, el aspirante tiene la
+                                posibilidad de registrar su información y esperar hasta que admisiones y
+                                registro active su perfil en el sistema.
+                            </p>
+                            <h2 id="acceso-al-proyecto">Acceso al proyecto</h2>
+                            <p>
+                                Link al repositorio de GitHub:{' '}
+                                <a href="https://github.com/cristianmunoz1/Ingresos_Reingresos">
+                                    https://github.com/cristianmunoz1/Ingresos_Reingresos
+                                </a>
+                            </p>
+                            <h2 id="módulos">Módulos</h2>
+                            <h3 id="registro">Registro</h3>
+                            <p>
+                                El sistema cuenta con un módulo de registro, en el cual las personas podrán
+                                ingresar información personal básica y una contraseña.
+                                <br />
+                                Internamente se le asigna un rol en específico a cada perfil para que este
+                                pueda hacer correcto uso de la plataforma.
+                                <br />
+                                El sistema cuenta con un link de verificación al correo electrónico que
+                                llega momentos después de realizar el primer registro en la plataforma.
+                            </p>
+                            <h3 id="ingreso">Ingreso</h3>
+                            <p>
+                                El sistema cuenta con un login, en el cual, las personas podrán iniciar
+                                sesión o recuperar su contraseña si es necesario.
+                            </p>
+                            <h3 id="listado-de-admitidos">Listado de admitidos</h3>
+                            <p>
+                                El sistema muestra a los funcionarios de admisiones y registro, una lista
+                                con las personas que registraron su información en el formulario, para que
+                                estos puedan ingresar el puntaje del exámen de admisión y activarlo como
+                                estudiante en el sistema.
+                            </p>
+                            <h2 id="roles">Roles</h2>
                             <p>En el sistema se podrá contar con 3 roles diferentes, los cuales son:</p>
                             <ol>
                                 <li>Aspirante</li>

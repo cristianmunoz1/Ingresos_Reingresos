@@ -1,25 +1,25 @@
 import React from 'react';
 import './styles/Tabla.css';
 import ModalIngresoPuntaje from './Modal';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import applicants from '../shared/data/applicants';
 
 
 const Tabla = () => {
   
-  const [ search, setSearch ] = useState("")
+  const [ search, setSearch ] = useState('');
   
 
   const searcher = (e) => {
-    setSearch(e.target.value)
-  }
+    setSearch(e.target.value);
+  };
 
-  let results = []
+  let results = [];
   if(!search){
     results = applicants;
   }else{
     results = applicants.filter((dato) => 
-    dato.id.toString().toLowerCase().includes(search.toLocaleLowerCase()))
+    dato.id.toString().toLowerCase().includes(search.toLocaleLowerCase()));
   }
 
   return (
@@ -43,7 +43,8 @@ const Tabla = () => {
         </thead>
         <tbody>
           { results.map((users) => (
-            <tr>
+            <tr key={users.id
+            }>
               <td><ModalIngresoPuntaje text={users.id} name = {users.name}></ModalIngresoPuntaje></td>
               <td>{users.name}</td>
               <td>{users.programa.idPrograma}</td>
