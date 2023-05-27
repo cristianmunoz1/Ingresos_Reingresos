@@ -13,7 +13,6 @@ import { height } from '@mui/system';
 library.add(fas, faTwitter, faFontAwesome);
 
 const ListadoAd = () => {
-
   return (
     <React.Fragment>
       <div className="listado-admisiones">

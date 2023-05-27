@@ -208,12 +208,12 @@ fieldset {
   padding: 25px;
 }
 
-a {
+.manual-link{
   text-decoration: none;
-  color: #ffffff;
+  color: white;
 }
 
-a:hover {
+.manual-link:hover{
   text-decoration: none;
-  color: #ffffff;
+  color: white;
 }

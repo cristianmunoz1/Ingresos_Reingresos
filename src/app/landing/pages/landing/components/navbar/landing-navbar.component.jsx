@@ -46,7 +46,7 @@ const LandingNavBar = () => {
           sx={{ margin: '0px 5px' }}
           size="small"
         >
-          <a href='/static/docs/userManual.pdf' download="Manual.pdf"> Descargar manual de usuario</a>
+          <a className="manual-link" href='/static/docs/userManual.pdf' download="Manual.pdf"> Descargar manual de usuario</a>
         </Button>
 
 
