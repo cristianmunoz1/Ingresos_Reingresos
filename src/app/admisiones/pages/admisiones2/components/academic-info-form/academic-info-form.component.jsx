@@ -8,15 +8,19 @@ import {
   Select,
 } from '@mui/material';
 import Grid from '@mui/material/Grid';
+import specialIncomeTypes from '../../../../../shared/data/special-income-types';
 import Typography from '@mui/material/Typography';
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
-import courses from '../../../../../shared/data/courses';
+import careers from '../../../../../shared/data/courses';
 import incomingTypes from '../../../../../shared/data/incoming-types';
-import modalidades from '../../../../../shared/data/modalidad';
+import modalities from '../../../../../shared/data/modalidad';
 import sedes from '../../../../../shared/data/sedes';
 import universities from '../../../../../shared/data/universities';
 import useForm from '../../../../../shared/hooks/useForm';
+
+
+
 
 const AcademicInfoForm = ({
   steps,
@@ -24,11 +28,28 @@ const AcademicInfoForm = ({
   initialFormState,
   setMainFormValues,
 }) => {
-  const [formValues, setFormValues] = useForm({ ...initialFormState });
+  const [formValues, setFormValues] = useForm(initialFormState);
 
-  const { incomingType } = formValues;
+  const { incomingType, career, sede, modality, universityOfOrigin } =
+    formValues;
 
   const [disabled, setDisabled] = useState(activeStep !== 4);
+
+  const {
+    specialIncome,
+    specialIncomeType,
+  } = formValues;
+
+  const handleInputChange = (event) => {
+    setFormValues(event);
+    setMainFormValues((mainFormState) => ({
+      ...mainFormState,
+      academicInfoForm: {
+        ...formValues,
+        [event.target.name]: event.target.value,
+      },
+    }));
+  };
 
   useEffect(() => {
     setDisabled(activeStep !== 4);
@@ -46,7 +67,7 @@ const AcademicInfoForm = ({
               id="incomingType"
               name="incomingType"
               value={incomingType}
-              onChange={setFormValues}
+              onChange={handleInputChange}
             >
               {incomingTypes.map((incomingType) => (
                 <FormControlLabel
@@ -66,31 +87,30 @@ const AcademicInfoForm = ({
         <Grid container flex={true} spacing={1} mb={3}>
           <Grid item xs={12} sm={4}>
             <Select
-              labelId="demo-simple-select-helper-label"
-              id="Programa"
+              id="career"
               disabled={disabled}
-              name="Programa"
-              value={courses.at(0)?.name}
-              label="Discapacidad"
+              name="career"
+              value={career}
+              label="Programa"
               fullWidth
-              onChange={setFormValues}
+              onChange={handleInputChange}
             >
-              {courses.map((course) => (
-                <MenuItem key={course.id} value={course.name}>
-                  {course.label}
+              {careers.map((career) => (
+                <MenuItem key={career.id} value={career.name}>
+                  {career.label}
                 </MenuItem>
               ))}
             </Select>
           </Grid>
           <Grid item xs={12} sm={4}>
             <Select
-              id="Sede"
+              id="sede"
               disabled={disabled}
-              name="Sede"
-              value={sedes.at(0)?.name}
-              label="Discapacidad"
+              name="sede"
+              value={sede}
+              label="Sede"
               fullWidth
-              onChange={setFormValues}
+              onChange={handleInputChange}
             >
               {sedes.map((sede) => (
                 <MenuItem key={sede.id} value={sede.name}>
@@ -101,15 +121,15 @@ const AcademicInfoForm = ({
           </Grid>
           <Grid item xs={12} sm={4}>
             <Select
-              id="modalidad"
-              name="modalidad"
+              id="modality"
+              name="modality"
               disabled={disabled}
-              value={modalidades.at(0)?.name}
-              label="Modalidad"
+              value={modality}
+              label="modality"
               fullWidth
-              onChange={setFormValues}
+              onChange={handleInputChange}
             >
-              {modalidades.map((modalidad) => (
+              {modalities.map((modalidad) => (
                 <MenuItem key={modalidad.id} value={modalidad.name}>
                   {modalidad.label}
                 </MenuItem>
@@ -119,6 +139,7 @@ const AcademicInfoForm = ({
         </Grid>
       )}
 
+
       {incomingType === 'INGRESO_TRANSFERENCIA' && (
         <Grid container flex={true} spacing={1} mb={3}>
           <Grid item xs={12} sm={3}>
@@ -126,10 +147,10 @@ const AcademicInfoForm = ({
               id="universityOfOrigin"
               name="universityOfOrigin"
               disabled={disabled}
-              value={universities.at(0)?.name}
+              value={universityOfOrigin}
               label="Universidad de orígen"
               fullWidth
-              onChange={setFormValues}
+              onChange={handleInputChange}
             >
               {universities.map((university) => (
                 <MenuItem key={university.id} value={university.name}>
@@ -140,15 +161,15 @@ const AcademicInfoForm = ({
           </Grid>
           <Grid item xs={12} sm={3}>
             <Select
-              id="Programa"
-              name="Programa"
-              value={courses.at(0)?.name}
-              label="Discapacidad"
+              id="career"
+              name="career"
+              value={career}
+              label="Carrera"
               disabled={disabled}
               fullWidth
-              onChange={setFormValues}
+              onChange={handleInputChange}
             >
-              {courses.map((course) => (
+              {careers.map((course) => (
                 <MenuItem key={course.id} value={course.name}>
                   {course.label}
                 </MenuItem>
@@ -157,13 +178,13 @@ const AcademicInfoForm = ({
           </Grid>
           <Grid item xs={12} sm={3}>
             <Select
-              id="Sede"
-              name="Sede"
-              value={sedes.at(0)?.name}
+              id="sede"
+              name="sede"
+              value={sede}
               disabled={disabled}
-              label="Discapacidad"
+              label="Sede"
               fullWidth
-              onChange={setFormValues}
+              onChange={handleInputChange}
             >
               {sedes.map((sede) => (
                 <MenuItem key={sede.id} value={sede.name}>
@@ -174,17 +195,39 @@ const AcademicInfoForm = ({
           </Grid>
           <Grid item xs={12} sm={3}>
             <Select
-              id="modalidad"
-              name="modalidad"
+              id="modality"
+              name="modality"
               disabled={disabled}
-              value={modalidades.at(0)?.name}
+              value={modality}
               label="Modalidad"
               fullWidth
-              onChange={setFormValues}
+              onChange={handleInputChange}
             >
-              {modalidades.map((modalidad) => (
+              {modalities.map((modalidad) => (
                 <MenuItem key={modalidad.id} value={modalidad.name}>
                   {modalidad.label}
+                </MenuItem>
+              ))}
+            </Select>
+          </Grid>
+        </Grid>
+      )}
+
+      {incomingType === 'INGRESO_ESPECIAL' && (
+        <Grid container flex={true} spacing={1} mb={3}>
+          <Grid item xs={12} sm={4}>
+            <Select
+              id="specialIncomeType"
+              disabled={disabled}
+              name="specialIncomeType"
+              value={specialIncomeType}
+              label="Ingreso especial"
+              fullWidth
+              onChange={handleInputChange}
+            >
+              {specialIncomeTypes.map((doc) => (
+                <MenuItem key={doc.id} value={doc.name}>
+                  {doc.label}
                 </MenuItem>
               ))}
             </Select>

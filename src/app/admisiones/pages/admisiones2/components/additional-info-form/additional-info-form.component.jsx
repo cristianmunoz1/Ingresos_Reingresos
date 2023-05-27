@@ -13,31 +13,32 @@ import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import genderTypes from '../../../../../shared/data/gender-types';
 import useForm from '../../../../../shared/hooks/useForm';
-import specialIncomeTypes from '../../../../../shared/data/special-income-types';
 import phonePrefixes from '../../../../../shared/data/phone-prefixes';
 import disabilityTypes from '../../../../../shared/data/disability-types';
+import { uploadFileToCloudinary } from '../../../../api/cloudinary.api';
+import SnackbarAlert from '../../../../../shared/components/snackbar-alert/snackbar-alert.component';
 
 const AdditionalInfoForm = ({
   steps,
   activeStep,
   initialFormState,
   setMainFormValues,
+  docValue,
 }) => {
-  const [file, setFile] = useState(null);
+  const [uploadedFile, setUploadedFile] = useState();
+  const [displayAlarm, setDisplayAlarm] = useState(false);
   const [formValues, setFormValues, handleCheckedChange] =
     useForm(initialFormState);
   const [disabled, setDisabled] = useState(activeStep !== 3);
 
   const {
     gender,
-    specialIncome,
-    specialIncomeType,
     email,
     phonePrefix,
     phoneNumber,
     disability,
     disabilityType,
-    diploma,
+    // diploma,
   } = formValues;
 
   const handleInputChange = (event) => {
@@ -62,21 +63,29 @@ const AdditionalInfoForm = ({
     }));
   };
 
-  const handleUploadFile = (e) => {
+  const handleUploadFile = async (e) => {
     const file = e.target.files[0];
+    const response = await uploadFileToCloudinary(
+      file,
+      `/admisiones/diplomas/${docValue}`
+    );
+    setUploadedFile(response);
     const event = {
       target: {
         name: e.target.name,
-        value: 'File uploaded',
+        value: JSON.stringify(response),
       },
     };
     handleInputChange(event);
-    setFile(file);
   };
 
   useEffect(() => {
     setDisabled(activeStep !== 3);
   }, [activeStep]);
+
+  useEffect(() => {
+    setDisplayAlarm(true);
+  }, [uploadedFile]);
 
   return (
     <React.Fragment>
@@ -101,39 +110,8 @@ const AdditionalInfoForm = ({
             ))}
           </Select>
         </Grid>
-        <Grid item xs={12} sm={2}>
-          <FormControlLabel
-            control={
-              <Checkbox
-                checked={specialIncome}
-                onChange={checkedChange}
-                id="specialIncome"
-                name="specialIncome"
-                disabled={disabled}
-              />
-            }
-            label="¿Ingreso especial?"
-            labelPlacement="top"
-          />
-        </Grid>
-        <Grid item xs={12} sm={2}>
-          <Select
-            id="specialIncomeType"
-            disabled={disabled || !specialIncome}
-            name="specialIncomeType"
-            value={specialIncomeType}
-            label="Ingreso especial"
-            fullWidth
-            onChange={handleInputChange}
-          >
-            {specialIncomeTypes.map((doc) => (
-              <MenuItem key={doc.id} value={doc.name}>
-                {doc.label}
-              </MenuItem>
-            ))}
-          </Select>
-        </Grid>
-        <Grid item xs={12} sm={3}>
+
+        <Grid item xs={12} sm={4}>
           <TextField
             id="email"
             name="email"
@@ -145,7 +123,7 @@ const AdditionalInfoForm = ({
             variant="outlined"
           />
         </Grid>
-        <Grid item xs={12} sm={1}>
+        <Grid item xs={12} sm={2}>
           <Select
             labelId="demo-simple-select-helper-label"
             id="phonePrefix"
@@ -163,7 +141,7 @@ const AdditionalInfoForm = ({
             ))}
           </Select>
         </Grid>
-        <Grid item xs={12} sm={2}>
+        <Grid item xs={12} sm={4}>
           <TextField
             required
             id="phoneNumber"
@@ -242,8 +220,17 @@ const AdditionalInfoForm = ({
             label="Subir acta de bachiller"
             labelPlacement="start"
           />
+          {uploadedFile && <h5>Archivo cargado ✅</h5>}
         </Grid>
       </Grid>
+      {uploadedFile && (
+        <SnackbarAlert
+          message={`El archivo ${uploadedFile.original_filename}.${uploadedFile.format} se ha subido correctamente. ✅`}
+          timeout={5000}
+          open={displayAlarm}
+          setOpen={setDisplayAlarm}
+        />
+      )}
     </React.Fragment>
   );
 };
@@ -251,6 +238,7 @@ const AdditionalInfoForm = ({
 AdditionalInfoForm.propTypes = {
   steps: PropTypes.arrayOf(PropTypes.string),
   activeStep: PropTypes.number,
+  docValue: PropTypes.string,
   initialFormState: PropTypes.object,
   setMainFormValues: PropTypes.func,
 };

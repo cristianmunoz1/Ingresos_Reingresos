@@ -39,6 +39,17 @@ const LandingNavBar = () => {
         >
           Universidad de Antioquia
         </Typography>
+
+        <Button
+          variant="contained"
+          color="success"
+          sx={{ margin: '0px 5px' }}
+          size="small"
+        >
+          <a href='/static/docs/userManual.pdf' download="Manual.pdf"> Descargar manual de usuario</a>
+        </Button>
+
+
         <Button
           variant="contained"
           color="success"

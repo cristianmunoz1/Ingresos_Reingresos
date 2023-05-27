@@ -1,13 +1,14 @@
 import Snackbar from '@mui/material/Snackbar';
 import PropTypes from 'prop-types';
-import React, { useState } from 'react';
+import React from 'react';
 
 const SnackbarAlert = (props) => {
-  const [open, setOpen] = useState(true);
-  const { message, timeout } = props;
+  const { message, timeout, open = true, setOpen } = props;
 
   const handleClose = () => {
-    setOpen(false);
+    if (setOpen) {
+      setOpen(false);
+    }
   };
 
   return (
@@ -25,6 +26,8 @@ const SnackbarAlert = (props) => {
 SnackbarAlert.propTypes = {
   message: PropTypes.string,
   timeout: PropTypes.number,
+  open: PropTypes.bool,
+  setOpen: PropTypes.func,
 };
 
 export default SnackbarAlert;

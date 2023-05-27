@@ -6,9 +6,7 @@ import React from 'react';
 const PaginaPrincipal = () => {
   return (
     <React.Fragment>
-      <div>
-        
-      </div>
+      
     </React.Fragment>
   );
 };

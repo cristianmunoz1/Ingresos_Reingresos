@@ -24,13 +24,14 @@ const SideBarItems = () => {
         Registro
       </ListSubheader>
 
+
       <ListItemButton
         onClick={(e) => handleNavigate(e, '/home/admisiones/page2')}
       >
         <ListItemIcon>
           <MenuBookIcon />
         </ListItemIcon>
-        <ListItemText primary="Registro" />
+        <ListItemText primary="Formulario v1" />
       </ListItemButton>
 
       <ListItemButton
@@ -39,7 +40,7 @@ const SideBarItems = () => {
         <ListItemIcon>
           <MenuBookIcon />
         </ListItemIcon>
-        <ListItemText primary="Registro v1.1" />
+        <ListItemText primary="Formulario v2" />
       </ListItemButton>
 
       <ListItemButton
@@ -48,8 +49,19 @@ const SideBarItems = () => {
         <ListItemIcon>
           <MenuBookIcon />
         </ListItemIcon>
-        <ListItemText primary="Admitidos" />
+        <ListItemText primary="Listado de admitidos" />
       </ListItemButton>
+
+      <ListItemButton
+        onClick={(e) => handleNavigate(e, '/home/admisiones/documentation')}
+      >
+        <ListItemIcon>
+          <MenuBookIcon />
+        </ListItemIcon>
+        <ListItemText primary="Documentación" />
+      </ListItemButton>
+
+
 
       {roles.includes(ADMIN_ROLE) && (
         <React.Fragment>
